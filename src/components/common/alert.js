@@ -9,7 +9,7 @@ export default function Alert(){
     
     useEffect(()=>{
         if(Object.keys(alert).length > 0){
-            setTimeout(()=>dispatch({type:"resetAlert"}), 3000);
+            setTimeout(()=>dispatch({type:"resetAlert"}), 10000);
         }
     })
  

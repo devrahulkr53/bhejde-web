@@ -19,17 +19,22 @@ export default function Driver({app}) {
     const dispatch = useDispatch()
     const auth = getAuth(); 
     
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [submitLoading,setSubmitLoading] = React.useState(null)
     const countryCode = '+91';
     const [data,setData] = React.useState(null);
+    const [aadharCard,setAadharCard] = React.useState(null)
+    const [vehicleRC,setVehicleRC] = React.useState(null)
+    const [vehicleInsurance,setVehicleInsurance] = React.useState(null)
     const [otp,setOtp] = React.useState(null);
     const [confirmationResult,setConfirmationResult] = React.useState(null)
-
+    
+    
     useEffect(()=>{
-        
-        
-    })
+        if(aadharCard,vehicleRC,vehicleInsurance){
+            readyToSubmit();
+        }
+    },[aadharCard,vehicleInsurance,vehicleRC]) 
     
     const onSubmit = data => {
         setSubmitLoading(true)
@@ -66,7 +71,16 @@ export default function Driver({app}) {
         confirmationResult.confirm(otp).then((result) => {
             // User signed in successfully.
             const user = result.user;
-            readyToSubmit();
+            setData({...data,user})
+            uploadFiles(data.aadharCard[0]).then(res=>{
+                setAadharCard(res)
+            })
+            uploadFiles(data.vehicleRC[0]).then(res=>{
+                setVehicleRC(res)
+            })
+            uploadFiles(data.vehicleInsurancePaper[0]).then(res=>{
+                setVehicleInsurance(res)
+            })
             // ...
         }).catch(err=>{
             dispatch({type:"setAlert",payloads:{type:'danger',msg:'Invalid OTP'}})
@@ -74,31 +88,22 @@ export default function Driver({app}) {
         });
     }
     
-    const readyToSubmit = () => { 
-        uploadFiles(data.aadharCard[0]).then(res=>{
-            setData({...data,aadharCard:res})
-        })
-        uploadFiles(data.vehicleRC[0]).then(res=>{
-            setData({...data,vehicleRC:res})
-        })
-        uploadFiles(data.vehicleInsurancePaper[0]).then(res=>{
-            setData({...data,vehicleInsurancePaper:res})
-        })
-        // fetch(apiUrl+'drivers.json?auth='+apiAuth,{
-        //     method:"POST",
-        //     headers:{
-        //         "Access-Control-Allow-Origin":"*"
-        //     },
-        //     body:JSON.stringify({...data,countryCode,userId:user.uid,token:user.accessToken,verified:false})
-        // }).then(d=>d.json()).then(json=>{
-        //     dispatch({type:"setAlert",payloads:{type:'success',msg:'Congratulation ! You are now registered.'}})
-        //     setSubmitLoading(null)
-        //     setConfirmationResult(null)
-        // }).catch(err=>console.log(err))
+    const readyToSubmit = () => {
+        fetch(apiUrl+'drivers.json?auth='+apiAuth,{
+            method:"POST",
+            headers:{
+                "Access-Control-Allow-Origin":"*"
+            },
+            body:JSON.stringify({driverName:data.driverName,phone:data.phone,aadharCard,vehicleInsurance,vehicleRC,countryCode,userId:data.user.uid,token:data.user.accessToken,verified:false})
+        }).then(d=>d.json()).then(json=>{
+            dispatch({type:"setAlert",payloads:{type:'success',msg:'Congratulation ! You are now registered.'}})
+            setSubmitLoading(null)
+            setConfirmationResult(null)
+        }).catch(err=>console.log(err))
         
     }
 
-    console.log(data)
+
      
 
 
@@ -113,7 +118,7 @@ export default function Driver({app}) {
             (snapshot) => {
                 // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done'); 
+                // console.log('Upload is ' + progress + '% done'); 
             }, 
             (error) => {
                 reject(error.message)
@@ -137,7 +142,6 @@ export default function Driver({app}) {
 
             <div className="row">
                 <div className="col-md-7 d-none d-md-block">
-                <img src="./logo.png" width="120px" alt="Logo" />
                 <div style={{opacity:0.7}}> 
                     <svg width="303" height="185" viewBox="0 0 303 185" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" clipRule="evenodd" d="M161.71 0V14.5301H167.276V71.0729H174.588V53.6601H178.439V49.4541L186.862 53.6601H188.926V43.1997L199.004 28.0385L209.082 43.1997V78.772H213.813V85.6847H220.794V57.472H226.579L226.338 45.766H233.033V42.4133H239.817L240.861 22.1391L241.904 42.4133H243.209V45.766H244.969L244.324 77.1158H245.574V63.2849L259.599 53.6601V71.0729H273.626V57.472H282.284V49.4541L297.115 61.6222V49.4541L317 65.7689V185H302.169H297.115H282.916H282.284H273.626H259.599H245.574H242.667H230.085H228.641H221.605H220.794H209.082H201.449H188.926H174.588H167.276H154.884H149.586H137.16H133.791H122.38H116.167H106.13H102.494H97.3182H88.5065H86.2441H77.4325H72.6773H68.6203H52.7926H46.2349H37.7058H29.1756H22.6089H20.6465H11.1198H8.58331H0V68.7999H6.75449L6.28098 45.766H20.6465V12.4235H29.1756V19.5111H37.7058V26.0002H46.2349V59.4552H52.7926V43.9007H55.1276V42.1852H70.3418V43.9007H72.6773V76.3348H77.4325V34.6503H79.7685V32.9348H94.9821V34.6503H97.3182V58.6541H102.494V43.9007H104.83V42.1852H120.043V43.9007H122.38V49.4541L127.262 55.5639V65.8074H133.791V59.4552H137.16V43.9007H149.586V34.6918L154.884 29.4393V14.5301H160.451V0H161.71Z" fill="#FFC815"/>
@@ -152,19 +156,19 @@ export default function Driver({app}) {
                     </div>
                 </div>
                 <h1 className="">Make Money. Earn Respect. Secure Your Future.</h1>
-                <p>Apply now to become BhejDo driver. Start earning in 24 hours!</p>
+                <p>Apply now to become bhejde driver. Start earning in 24 hours!</p>
                 </div>
                 <div className="col-md-5">
                 <form onSubmit={handleSubmit(onSubmit)} className="my-4 w-100">
                     <div className="display-6">Register your vehicle</div>
-                    <small>Register your vehicle and become BhejDo driver.</small>
+                    {/* <small>Register your vehicle and become bhejde driver.</small> */}
                     {/* <small> Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</small> */}
                     <div className="my-4"></div>
                     <div id="sign-in-button"></div>
 
 
                     {!confirmationResult ? <>
-                        <small className="text-secondary">Personal Information</small>
+                        {/* <small className="text-secondary">Personal Information</small> */}
                         <div className="input-group my-2">
                             <input type="text" className={`form-control`} id="driverName" {...register("driverName",{required:true})} placeholder="Driver name" />
                             {errors.driverName && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
@@ -185,20 +189,26 @@ export default function Driver({app}) {
                             <option value="Crossover">Crossover</option>
                         </select>
                         <small className="text-secondary">Aadhar Card</small>
-                        <div className="input-group mb-2">
+                        <label htmlFor="aadharCard" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                            {/* <div>Aadhar Card</div> */}
                             <input type="file" className={`form-control`} id="aadharCard" {...register("aadharCard",{required:true})} placeholder="Aadhar Card" />
-                            {errors.aadharCard && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
-                        </div>
-                        <small className="text-secondary">Vehicle RC</small>
-                        <div className="input-group mb-2">
+                            <img src="/icons/aadharcard.png" alt="Aadhar Card" width="60px" />
+                            {errors.aadharCard && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                        </label>
+                        <small className="text-secondary">Vehicle Registration Certificate</small>
+                        <label htmlFor="vehicleRC" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                            {/* <div>Vehicle Registration Certificate</div> */}
                             <input type="file" className={`form-control`} id="vehicleRC" {...register("vehicleRC",{required:true})} placeholder="Vehicle Registration Number" />
-                            {errors.vehicleRC && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
-                        </div>
-                        <small className="text-secondary">Upload insurance paper of your vehicle</small>
-                        <div className="input-group mb-2">
+                            <img src="/icons/rc.png" alt="" width="60px" className="" /> 
+                            {errors.vehicleRC && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                        </label>
+                        <small className="text-secondary">Vehicle Insurance</small>
+                        <label htmlFor="vehicleInsurancePaper" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                            {/* <div>Vehicle Insurance paper</div> */}
                             <input type="file" className={`form-control`} id="vehicleInsurancePaper" {...register("vehicleInsurancePaper",{required:true})} placeholder="Vehicle Registration Number" />
-                            {errors.vehicleInsurancePaper && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
-                        </div>
+                            <img src="/icons/insurance.png" alt="" width="60px" />
+                            {errors.vehicleInsurancePaper && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                        </label>
                         
                         <div className="text-start my-3">
                             <button type="submit" disabled={submitLoading===true} className={`btn px-5 ${submitLoading === false ? 'btn-secondary':'btn-warning'}`}>
