@@ -3,44 +3,21 @@ import { useForm } from 'react-hook-form';
 import {apiAuth, apiUrl} from '../globalVar';
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import { useDispatch } from 'react-redux'
-
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-
-
-// Create the file metadata
-/** @type {any} */
-const metadata = {
-    contentType: 'image/jpeg'
-};
-
+ 
 export default function Driver({app}) {
-    const storage = getStorage(app);
-    
     const dispatch = useDispatch()
     const auth = getAuth(); 
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [submitLoading,setSubmitLoading] = React.useState(null)
     const countryCode = '+91';
-    const [data,setData] = React.useState(null);
-    const [aadharCard,setAadharCard] = React.useState(null)
-    const [driverLicense,setDriverLicense] = React.useState(null)
-    const [vehicleRC,setVehicleRC] = React.useState(null)
-    const [vehicleInsurance,setVehicleInsurance] = React.useState(null)
+    const [data,setData] = React.useState(null); 
     const [otp,setOtp] = React.useState(null);
     const [confirmationResult,setConfirmationResult] = React.useState(null)
     
-    
-    useEffect(()=>{
-        if(aadharCard && vehicleRC && vehicleInsurance && driverLicense){
-            readyToSubmit();
-        }
-    },[aadharCard,driverLicense,vehicleInsurance,vehicleRC]) 
-    
-    const onSubmit = data => {
+     
+    const sendOTP = data => {
         setSubmitLoading(true)
-        if(submitLoading) return;
         var phone = countryCode+data.phone
         window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
             'size': 'invisible',
@@ -50,9 +27,9 @@ export default function Driver({app}) {
             }
         }, auth);
         const appVerifier = window.recaptchaVerifier;
-        fetch(apiUrl+`users.json?auth=${apiAuth}&orderBy="phone"&startAt="${data.phone}"&endAt="${data.phone}"`).then(d=>d.json()).then(json=>{
-            if(Object.keys(json).length > 0){
-                dispatch({type:"setAlert",payloads:{type:'warning',msg:'You are already registered driver'}})
+        fetch(apiUrl+`/drivers/phone/${phone}`).then(d=>d.json()).then(json=>{
+            if(json.status === 0){
+                dispatch({type:"setAlert",payloads:{type:'warning',msg:json.msg}})
                 setSubmitLoading(null)
             }else{
                 signInWithPhoneNumber(auth, phone, appVerifier)
@@ -69,87 +46,44 @@ export default function Driver({app}) {
         })
     }
     
-    const verifyOTP = () => {
+    const verifyOTP = () => { 
         setSubmitLoading(true)
         confirmationResult.confirm(otp).then((result) => {
             // User signed in successfully.
-            const user = result.user;
-            setData({...data,user})
-            uploadFiles(data.aadharCard[0]).then(res=>{
-                setAadharCard(res)
-            })
-            uploadFiles(data.vehicleRC[0]).then(res=>{
-                setVehicleRC(res)
-            })
-            uploadFiles(data.driverLicense[0]).then(res=>{
-                setDriverLicense(res)
-            })
-            uploadFiles(data.vehicleInsurancePaper[0]).then(res=>{
-                setVehicleInsurance(res)
-            })
-            // ...
+            onSubmit(result.user);
         }).catch(err=>{
             dispatch({type:"setAlert",payloads:{type:'danger',msg:'Invalid OTP'}})
             setSubmitLoading(null)
         });
-    }
+    } 
     
-    const readyToSubmit = () => {
-        fetch(apiUrl+'users.json?auth='+apiAuth,{
+    const onSubmit = (user) => {
+        var formData = new FormData();
+        formData.append("uid",user.uid)
+        formData.append("accessToken",user.accessToken)
+        formData.append("driverName",data.driverName)
+        formData.append("phone",user.phoneNumber)
+        formData.append("vehicleType",data.vehicleType)
+        formData.append("aadharCard",data.aadharCard[0])
+        formData.append("vehicleRC",data.vehicleRC[0])
+        formData.append("vehicleInsurance",data.vehicleInsurance[0])
+        fetch(apiUrl+`/drivers/register`,{
             method:"POST",
-            headers:{
-                "Access-Control-Allow-Origin":"*"
-            },
-            body:JSON.stringify({
-                name:data.name,
-                phone:data.phone,
-                role:3,
-                aadharCard,vehicleInsurance,vehicleRC,countryCode,
-                uid:data.user.uid,
-                token:data.user.accessToken,
-                verified:false
-            })
+            body:formData, 
         }).then(d=>d.json()).then(json=>{
-            dispatch({type:"setAlert",payloads:{type:'success',msg:'You are now registered and verification is in progress'}})
-            setSubmitLoading(null)
-            setConfirmationResult(null)
-        }).catch(err=>console.log(err))
+            if(json.status === 1){
+                dispatch({type:"setAlert",payloads:{type:'success',msg:json.msg}})
+                setSubmitLoading(null)
+                setConfirmationResult(null)
+            }else{
+                dispatch({type:"setAlert",payloads:{type:'danger',msg:'Something went wrong'}})
+                setSubmitLoading(null)
+                setConfirmationResult(null)
+            }
+        }) 
         
     }
 
-
-     
-
-
-    const uploadFiles = async (file) => {
-        return new Promise(function(resolve,reject){
-            // Upload file and metadata to the object 'images/mountains.jpg'
-            const storageRef = ref(storage, 'users/' + new Date().toISOString() + file.name);
-            const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-    
-            // Listen for state changes, errors, and completion of the upload.
-            uploadTask.on('state_changed',
-            (snapshot) => {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                // console.log('Upload is ' + progress + '% done'); 
-            }, 
-            (error) => {
-                reject(error.message)
-            }, 
-            () => {
-                // Upload completed successfully, now we can get the download URL
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    resolve(downloadURL)
-                });
-            }
-            );
-
-        })
-    }
-
-
-  
 
     return (
         <div className="container">
@@ -172,8 +106,8 @@ export default function Driver({app}) {
                 <h1 className="">Make Money. Earn Respect. Secure Your Future.</h1>
                 <p>Apply now to become bhejde driver. Start earning in 24 hours!</p>
                 </div>
-                <div className="col-md-5">
-                <form onSubmit={handleSubmit(onSubmit)} className="my-4 w-100">
+                <div className="col-md-5 my-auto">
+                <form onSubmit={handleSubmit(sendOTP)} className="my-4 w-100">
                     <div className="display-6">Register your vehicle</div>
                     {/* <small>Register your vehicle and become bhejde driver.</small> */}
                     {/* <small> Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</small> */}
@@ -184,8 +118,8 @@ export default function Driver({app}) {
                     {!confirmationResult ? <>
                         {/* <small className="text-secondary">Personal Information</small> */}
                         <div className="input-group my-2">
-                            <input type="text" className={`form-control`} id="name" {...register("name",{required:true})} placeholder="Driver name" />
-                            {errors.name && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
+                            <input type="text" className={`form-control`} id="driverName" {...register("driverName",{required:true})} placeholder="Driver name" />
+                            {errors.driverName && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
                         </div>
                         <div className="input-group my-2">
                             <div className="input-group-prepend">
@@ -204,31 +138,21 @@ export default function Driver({app}) {
                         </select>
                         <small className="text-secondary">Aadhar Card</small>
                         <label htmlFor="aadharCard" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Aadhar Card</div> */}
                             <input type="file" className={`form-control`} id="aadharCard" {...register("aadharCard",{required:true})} placeholder="Aadhar Card" />
                             <img src="/icons/aadharcard.png" alt="Aadhar Card" width="60px" />
                             {errors.aadharCard && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                         </label>
-                        <small className="text-secondary">Driver License</small>
-                        <label htmlFor="driverLicense" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Driver License</div> */}
-                            <input type="file" className={`form-control`} id="driverLicense" {...register("driverLicense",{required:true})} placeholder="Vehicle Registration Number" />
-                            <img src="/icons/rc.png" alt="" width="60px" className="" /> 
-                            {errors.driverLicense && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
-                        </label>
                         <small className="text-secondary">Vehicle Registration Certificate</small>
                         <label htmlFor="vehicleRC" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Vehicle Registration Certificate</div> */}
                             <input type="file" className={`form-control`} id="vehicleRC" {...register("vehicleRC",{required:true})} placeholder="Vehicle Registration Number" />
                             <img src="/icons/rc.png" alt="" width="60px" className="" /> 
                             {errors.vehicleRC && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                         </label>
                         <small className="text-secondary">Vehicle Insurance</small>
-                        <label htmlFor="vehicleInsurancePaper" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Vehicle Insurance paper</div> */}
-                            <input type="file" className={`form-control`} id="vehicleInsurancePaper" {...register("vehicleInsurancePaper",{required:true})} placeholder="Vehicle Registration Number" />
+                        <label htmlFor="vehicleInsurance" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                            <input type="file" className={`form-control`} id="vehicleInsurance" {...register("vehicleInsurance",{required:true})} placeholder="Vehicle Registration Number" />
                             <img src="/icons/insurance.png" alt="" width="60px" />
-                            {errors.vehicleInsurancePaper && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                            {errors.vehicleInsurance && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                         </label>
                         
                         <div className="text-start my-3">
@@ -253,3 +177,4 @@ export default function Driver({app}) {
         </div>
     )
 }
+

@@ -1,0 +1,6 @@
+.text-decoration-none {
+    color: white;
+}
+.text-decoration-none:hover {
+    color: yellow;
+}

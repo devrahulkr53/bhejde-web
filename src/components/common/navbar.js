@@ -8,9 +8,9 @@ export default class Navbar extends Component {
             <div className="container-fluid navbar-light bg-light">
                 <nav className="navbar navbar-expand-lg container p-0">
                     <div className="container-fluid p-0">
-                        <a className="navbar-brand" href="#">
+                        <div className="navbar-brand" href="#">
                             <Link to="/"><img src="/logo.png" alt="Logo" width="80px" /></Link>
-                        </a>
+                        </div>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
                         </button>

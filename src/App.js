@@ -14,7 +14,9 @@ import {
 import Alert from './components/common/alert';
 import Home from './pages/Home';
 import Navbar from './components/common/navbar';
+import Footer from './components/common/footer';
 import About from './pages/About';
+import ScrollToTop from './components/common/scrollToTop';
 
 function App() {
   const app = initializeApp(firebaseConfig)
@@ -23,11 +25,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <Alert />
-        
+        <ScrollToTop />
         <Navbar></Navbar>
         <div> 
-          {/* A <Switch> looks through its children <Route>s and
-              renders the first one that matches the current URL. */}
           <Switch>
             <Route path="/driver">
               <Driver {...app} />
@@ -40,6 +40,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <Footer></Footer>
       </Router>
     </Provider>  
   );
