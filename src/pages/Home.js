@@ -28,23 +28,33 @@ export default function Home() {
     return (
         <div className="container">
             <div className="row">
-                <div className="col-md-6 my-auto">
-                    <div className="display-5">Book a City Taxi to your destination in town</div>
-                    <div className="text-secondary my-1" style={{fontSize:"22px"}}>Choose from a range of categories and prices</div>
+                <div className="col-md-7 my-auto">
+                    <div className="display-5">One click booking for your logistics needs</div>
+                    <div className="text-secondary my-1" style={{fontSize:"22px"}}>India’s leading logistics provider.
+                    Book mini trucks, auto, pick up trucks in one click.
+                    </div>
                     <button className="btn btn-warning my-2 px-4 btn-lg">Download app</button>
                 </div>
-                <div className="col-md-6">
-                    <img src="/images/taxi.png" alt="Taxi" width="100%" />
+                <div className="col-md-5 py-4">
+                    <img src="/images/taxi2.png" alt="Taxi" width="100%" />
                 </div>
             </div>
             
-            <div className="row">
+            <div className="row my-4 py-4">
                 <div className="col-md-12">
                     <h3 className="display-6">Why ride with Bhejde?</h3>
-                    <div className="text-secondary">The best way to travel to your destination</div>
+                    {/* <div className="text-secondary">The best way to travel to your destination</div> */}
+                    <ul>
+                        
+                        <li>One click booking for your logistics needs</li>
+                        <li>Verified & trusted drivers ( complex but straight process to register your vehicles)</li>
+                        <li>Book packers & movers ( get best and competitive pricing from our trusted partners)</li>
+                        <li>Insure your shipment from our trusted insurance provider (one click insurance for your shipment)</li>
+
+                    </ul>
                 </div>
-            </div>
-            <div className="row">
+            </div> 
+            {/* <div className="row">
                 {whyBhejDe.map((e,k)=>(
                     <div key={k} className="col-md-6">
                         <div className="d-flex align-items-center">
@@ -57,7 +67,7 @@ export default function Home() {
                     </div>
                 ))}
                  
-            </div>
+            </div> */}
             
         </div>
     )

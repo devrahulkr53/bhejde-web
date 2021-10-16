@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import {apiAuth, apiUrl} from '../globalVar';
-import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+// import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
+import firebase from 'firebase';
 import { useDispatch } from 'react-redux'
 
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 
 
@@ -14,11 +14,12 @@ const metadata = {
     contentType: 'image/jpeg'
 };
 
-export default function Driver({app}) {
-    const storage = getStorage(app);
-    
+export default function Driver() {
+    // Create a root reference
+    // const storage = getStorage(app);
+    const storage = firebase.storage().ref();
     const dispatch = useDispatch()
-    const auth = getAuth(); 
+    // const auth = getAuth(); 
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [submitLoading,setSubmitLoading] = React.useState(null)
@@ -42,29 +43,31 @@ export default function Driver({app}) {
         setSubmitLoading(true)
         if(submitLoading) return;
         var phone = countryCode+data.phone
-        window.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
             'size': 'invisible',
             'callback': (response) => {
-                // reCAPTCHA solved, allow signInWithPhoneNumber.
-                // onSignInSubmit(); 
+              // reCAPTCHA solved, allow signInWithPhoneNumber.
             }
-        }, auth);
+          }); 
         const appVerifier = window.recaptchaVerifier;
         fetch(apiUrl+`users.json?auth=${apiAuth}&orderBy="phone"&startAt="${data.phone}"&endAt="${data.phone}"`).then(d=>d.json()).then(json=>{
             if(Object.keys(json).length > 0){
                 dispatch({type:"setAlert",payloads:{type:'warning',msg:'You are already registered driver'}})
                 setSubmitLoading(null)
             }else{
-                signInWithPhoneNumber(auth, phone, appVerifier)
-                .then((res) => {
+                firebase.auth().signInWithPhoneNumber(phone, appVerifier)
+                    .then((res) => {
+                    // SMS sent. Prompt user to type the code from the message, then sign the
+                    // user in with confirmationResult.confirm(code).
                     setData(data)
                     dispatch({type:"setAlert",payloads:{type:'success',msg:'OTP sent.'}})
                     setConfirmationResult(res) 
                     setSubmitLoading(null)
-                }).catch(err=>{
+                    // ...
+                }).catch((err) => {
                     dispatch({type:"setAlert",payloads:{type:'danger',msg:err.message}})
                     setSubmitLoading(null)
-                });
+                }); 
             }
         })
     }
@@ -123,27 +126,25 @@ export default function Driver({app}) {
 
     const uploadFiles = async (file) => {
         return new Promise(function(resolve,reject){
-            // Upload file and metadata to the object 'images/mountains.jpg'
-            const storageRef = ref(storage, 'users/' + new Date().toISOString() + file.name);
-            const uploadTask = uploadBytesResumable(storageRef, file, metadata);
-    
-            // Listen for state changes, errors, and completion of the upload.
-            uploadTask.on('state_changed',
-            (snapshot) => {
-                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                // console.log('Upload is ' + progress + '% done'); 
+            
+            var uploadTask = storage.child('users/'+ new Date().toISOString() + file.name).put(file);
+            
+            uploadTask.on('state_changed', 
+            (snapshot) => { 
             }, 
             (error) => {
                 reject(error.message)
-            }, 
-            () => {
-                // Upload completed successfully, now we can get the download URL
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                // Handle unsuccessful uploads
+              }, 
+              () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     resolve(downloadURL)
                 });
-            }
+              }
             );
+ 
 
         })
     }

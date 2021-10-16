@@ -9,17 +9,17 @@ export default class About extends Component {
                         <div className="py-4">
                             <h1 className="display-6">About Bhejde</h1>
                             <p>
-                                Ola is India’s largest mobility platform and one of the world’s largest ride-hailing companies, serving 250+ cities across India, Australia, New Zealand, and the UK. The Ola app offers mobility solutions by connecting customers to drivers and a wide range of vehicles across bikes, auto-rickshaws, metered taxis, and cabs, enabling convenience and transparency for hundreds of millions of consumers and over 1.5 million driver-partners.
-                                Ola’s core mobility offering in India is supplemented by its electric-vehicle arm, Ola Electric; India’s largest fleet management business, Ola Fleet Technologies and Ola Skilling, that aims to enable millions of livelihood opportunities for India's youth. With its acquisition of Ridlr, India’s leading public transportation app and investment in Vogo, a dockless scooter sharing solution, Ola is looking to build mobility for the next billion Indians. Ola also extends its consumer offerings like micro-insurance and credit led payments through Ola Financial Services and a range of owned food brands through India’s largest network of kitchens under its Food business.
-                                Ola was founded in Dec 2010 by Bhavish Aggarwal and Ankit Bhati with a mission to build mobility for a billion people.
+                            India’s leading intra city logistics provider company, we are a based out of Jamshedpur, bhej de india works towards improving intra city logistic needs. Providing solution for complex and delayed logistics needs. It helps merchants or general public to shift there product from one point to other.
+                            Our focus is to provide one click solution to all logistics needs, also we help driver to get more booking for there vehicles.
+
                             </p>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    {/* <div className="col-md-3">
                         <img src="/logo.png" alt="Logo" width="100%" />
-                    </div>
+                    </div> */}
                 </div>
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-md-6 d-flex align-items-center">
                         <img src="https://www.olacabs.com/webstatic/img/about/book-ride.svg" alt="" />
                         <div className="p-3">
@@ -50,7 +50,12 @@ export default class About extends Component {
                             <p>Employees work tirelessly to provide you with the best in technology and service</p>
                         </div>
                     </div>
-                </div>
+                </div> */}
+                <h1 className="display-6">Our Team</h1>
+                <h5>Mohit Gupta ( guptamohit26@gmail.com)</h5>
+                <h5>Founder & CEO</h5>
+                <h5>Behj de indiapvt ltd</h5>
+
             </div>
         )
     }
