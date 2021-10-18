@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react" 
-import { connect } from "react-redux" 
+import { connect, useDispatch } from "react-redux" 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb" 
 //css
@@ -17,6 +17,7 @@ import {
   Button,
   Label
 } from "reactstrap"
+import firebase from 'firebase';
 
 // import images
 import img2 from "../../assets/images/small/img-2.jpg"
@@ -25,49 +26,97 @@ import { useForm } from "react-hook-form"
 import CreateVehicle from "./Create"
 
 const Vehicles = props => {
+
+  var db = firebase.firestore();
+  var storage = firebase.storage();
+  var dispatch = useDispatch();
+  const [vehicles,setVehicles] = useState([])
+  const [isLoading,setLoading] = useState(true)
+  const [step,setStep] = useState('read')
+
+
+  useEffect(()=>{
+    db.collection("vehicles").onSnapshot((querySnapshot) => {
+      var data = []
+      querySnapshot.forEach((doc) => {
+        doc.data() && data.push({id:doc.id,...doc.data()}) 
+      });
+      setLoading(false)
+      setVehicles(data)
+    });  
+  },[])
+ 
+
+  const deleteVehicle = (x) => {
+    var desertRef = storage.refFromURL(x.vehicleImage);
+    desertRef.delete().then(() => {
+      // File deleted successfully
+      db.collection("vehicles").doc(x.id).delete().then((res) => {
+        dispatch({type:"setAlert",payloads:{type:'danger',msg:'Vehicle removed'}})
+      });  
+    }).catch((error) => dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}}));
+     
+  }
+ 
   
-
-
   return (
     <React.Fragment>
       <div className="page-content">
           {/* Render Breadcrumb */}
           <Breadcrumbs title="Apps" breadcrumbItem="Vehicles" />
-          <Row>
-            <Col lg={12}>
-              <Card>
-                <Row className="g-0 align-items-center">
-                  <Col md={2}>
-                    <CardImg className="img-fluid" src={img2} alt="Card image cap" />
+          {step === 'create' || vehicles?.length === 0 && !isLoading ? <CreateVehicle {...{step,setStep}} /> : <></>}
+          {step === 'read' && <>
+            {isLoading ? <div className="text-center">
+              <div className="spinner-border text-info"></div>
+            </div>:<>
+              <Row>
+                {vehicles?.map((val,key)=>(
+                  <Col lg={12} key={key}>
+                    <Card>
+                      <Row className="g-0 align-items-center">
+                        <Col md={2}>
+                          <CardImg className="img-fluid" src={val.vehicleImage} alt="Card image cap" />
+                        </Col>
+                        <Col md={8}>
+                          <CardBody>
+                            <CardTitle className="h5">{val.vehicleName}</CardTitle>
+                            <CardText>
+                              {val.vehicleDesc}
+                              </CardText>
+                            <CardText>
+                              {/* <small className="text-muted">
+                                Last updated 3 mins ago
+                                </small> */}
+                            </CardText>
+                            
+                          </CardBody>
+                        </Col>
+                        
+                        <Col md={2} className="d-flex">
+                          <Button color="danger" onClick={()=>deleteVehicle(val)} className="btn btn-danger waves-effect ms-auto me-2">
+                            Delete
+                          </Button>
+                        </Col>
+                      </Row>
+                    </Card>
                   </Col>
-                  <Col md={10}>
-                    <CardBody>
-                      <CardTitle className="h5">Card title</CardTitle>
-                      <CardText>
-                        This is a wider card with supporting text below as a
-                        </CardText>
-                      <CardText>
-                        {/* <small className="text-muted">
-                          Last updated 3 mins ago
-                          </small> */}
-                      </CardText>
-                    </CardBody>
-                  </Col>
-                </Row>
-              </Card>
-            </Col>
-             
-          </Row> 
-          <CreateVehicle />
+                ))}
+              </Row>
+            </>}
+          </>}
           
-          <div className="button-items d-flex">
-            <Button color="primary" className="btn btn-primary waves-effect ms-auto">
+          {!isLoading && <div className="button-items d-flex">
+            <Button color="primary" onClick={()=>setStep('create')} disabled={step === 'create'} className="btn btn-primary waves-effect ms-auto">
               Add Vehicles
             </Button> 
-            <Button color="danger" className="btn btn-danger waves-effect">
+            <Button color="danger" onClick={()=>setStep('read')} disabled={step === 'read'} className="btn btn-danger waves-effect">
               Cancel
             </Button> 
-          </div>
+          </div>}
+          
+           
+          
+          
       </div>
     </React.Fragment>
   )

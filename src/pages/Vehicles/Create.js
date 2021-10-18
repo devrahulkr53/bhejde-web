@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { Button, Card, CardBody } from 'reactstrap'
 import firebase from 'firebase';
+import { useDispatch } from 'react-redux';
 
-export default function CreateVehicle() {
-    
+export default function CreateVehicle(props) {
+
     var db = firebase.firestore();
     var storageRef = firebase.storage().ref();
+    var dispatch = useDispatch();
     const {register, handleSubmit, watch} = useForm()
     const [image,setImage] = useState(null)
-
+    const [isLoading,setLoading] = useState(false)
     // Callback version of watch.  It's your responsibility to unsubscribe when done.
     React.useEffect(() => {
         const subscription = watch((value, { name, type }) => {
@@ -21,12 +23,30 @@ export default function CreateVehicle() {
     }, [watch]);
 
     const onSubmit = data => {
-        if(data.vehicleImage[0]){
-            uploadFile(data.vehicleImage[0]).then(res=>{
-                
-            })
+        // if(data.vehicleImage[0]){
+        //     setLoading(true) 
+        //     uploadFile(data.vehicleImage[0]).then(res=>{
+        //         db.collection("vehicles").add({
+        //             vehicleName:data.vehicleName,
+        //             vehicleDesc:data.vehicleDesc,
+        //             vehicleImage:res
+        //         })
+        //         .then((docRef) => {
+        //             setLoading(false)
+        //             props.setStep('read')
+        //             dispatch({type:"setAlert",payloads:{type:'success',msg:'New vehicle is added'}})
+        //         })
+        //         .catch((error) => {
+        //             setLoading(false)
+        //             dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}})
+        //         });
+        //     }).catch(err=>{
+        //         console.log(err)
+        //         setLoading(false)
+        //         dispatch({type:"setAlert",payloads:{type:'danger',msg:err.message}})    
+        //     }) 
 
-        }
+        // }
     }
     
     const onImageChange = e => {
@@ -49,6 +69,7 @@ export default function CreateVehicle() {
             }, 
             (error) => {
                 // Handle unsuccessful uploads
+                reject(error)
             }, 
             () => { 
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
@@ -68,7 +89,7 @@ export default function CreateVehicle() {
                 HTML5 form validation–available in all our supported
                 browsers.
             </p> */}
-            <form onSubmit={handleSubmit(onSubmit)} className="row">
+            <form id="vehiclesForm" onSubmit={handleSubmit(onSubmit)} className="row">
                 <div className="col-md-9">
                     <input type="text" {...register("vehicleName",{required:true})} name="vehicleName" className="form-control mb-2" placeholder="Enter vehicle name" />
                     <textarea {...register("vehicleDesc",{required:true})} name="vehicleDesc" cols="30" rows="4" className="form-control mb-2" placeholder="Write something about this vehicle"></textarea>
@@ -78,8 +99,8 @@ export default function CreateVehicle() {
                     <img src={image || '/images/gallery.png'} alt="Upload image" width="100%" className="rounded" style={{cursor:"pointer"}} />
                 </label>
                 <div>
-                    <Button color="primary" type="submit">
-                    Submit
+                    <Button color="primary" type="submit" disabled={isLoading}>
+                        {isLoading ? 'Loading ...':'Submit'}
                     </Button>
                 </div>
             </form>

@@ -14,9 +14,13 @@ import LanguageDropdown from "../CommonForBoth/TopbarDropdown/LanguageDropdown";
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 
-import logoSm from "../../assets/images/logo-sm.png";
-import logoDark from "../../assets/images/logo-dark.png";
-import logoLight from "../../assets/images/logo-light.png";
+// import logoSm from "../../assets/images/logo-sm.png";
+// import logoDark from "../../assets/images/logo-dark.png";
+// import logoLight from "../../assets/images/logo-light.png";
+
+import logoSm from "../../assets/logo.png";
+import logoDark from "../../assets/logo.png";
+import logoLight from "../../assets/logo.png";
 
 // import images
 import github from "../../assets/images/brands/github.png";
@@ -119,7 +123,7 @@ const Header = (props) => {
                   </Form>
                 </DropdownMenu>
               </Dropdown>
-              <LanguageDropdown />{" "}
+              {/* <LanguageDropdown />{" "} */}
               <Dropdown className="d-none d-lg-inline-block ms-1">
                 <button
                   type="button"
@@ -147,19 +151,19 @@ const Header = (props) => {
               <div className="navbar-brand-box">
                 <Link to="/" className="logo logo-dark">
                   <span className="logo-sm">
-                    <img src={logoSm} alt="" height="20" />
+                    <img src={logoSm} alt="" height="50" />
                   </span>
                   <span className="logo-lg">
-                    <img src={logoDark} alt="" height="19" />
+                    <img src={logoDark} alt="" height="50" />
                   </span>
                 </Link>
 
                 <Link to="/" className="logo logo-light">
                   <span className="logo-sm">
-                    <img src={logoSm} alt="" height="20" />
+                    <img src={logoSm} alt="" height="50" />
                   </span>
                   <span className="logo-lg">
-                    <img src={logoLight} alt="" height="19" />
+                    <img src={logoLight} alt="" height="50" />
                   </span>
                 </Link>
               </div>
@@ -184,7 +188,7 @@ const Header = (props) => {
                   <span className="bx bx-search-alt"></span>
                 </div>
               </Form>{" "}
-              <Dropdown
+              {/* <Dropdown
                 className="dropdown-mega d-none d-lg-inline-block ms-2"
                 isOpen={megaMenu}
                 toggle={() => {
@@ -377,7 +381,7 @@ const Header = (props) => {
                     </Col>
                   </Row>
                 </DropdownMenu>
-              </Dropdown>
+              </Dropdown> */}
             </div>
           </Container>
         </div>

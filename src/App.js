@@ -22,12 +22,10 @@ import "./assets/scss/theme.scss"
 
 import fakeBackend from "./helpers/AuthType/fakeBackend"
 import firebase from 'firebase'
-import firebaseConfig from './helpers/firebase'
 
 // Activating fake backend
 fakeBackend()
 const App = props => {
-
   
   function getLayout() {
     let layoutCls = VerticalLayout
@@ -41,13 +39,8 @@ const App = props => {
         break
     }
     return layoutCls
-  }
-  
-  useEffect(()=>{
-    firebase.initializeApp(firebaseConfig)
-
-  },[])
-
+  } 
+ 
   const Layout = getLayout()
   return (
     <React.Fragment>
@@ -71,6 +64,7 @@ const App = props => {
             component={route.component}
             key={idx}
             isAuthProtected={false}
+            exact
           />
         ))}
         {userRoutes.map((route, idx) => (
@@ -80,7 +74,6 @@ const App = props => {
             component={route.component}
             key={idx}
             isAuthProtected={true}
-            exact
           />
         ))}
         </Switch>

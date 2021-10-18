@@ -1,11 +1,12 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Route, Redirect } from "react-router-dom"
+import Alert from '../../components/Common/alert'
 
 const Authmiddleware = ({
   component: Component,
   layout: Layout,
-  isAuthProtected,
+  isAuthProtected,app,
   ...rest
 }) => (
   <Route
@@ -24,7 +25,8 @@ const Authmiddleware = ({
       return (
         
         <Layout>
-          <Component {...props} />
+          <Alert />
+          <Component {...props} app={app} />
         </Layout>
       )
     }}

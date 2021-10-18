@@ -112,13 +112,19 @@ import Driver from "../pages/Driver"
 import About from "../pages/About"
 import Terms from "../pages/Terms"
 import Privacy from "../pages/Privacy"
+import Rides from "../pages/Rides"
 import Vehicles from "../pages/Vehicles"
+import Drivers from "../pages/Drivers"
+import Users from "../pages/Users"
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard2 },
   { path : '/dashboard2' , component : Dashboard},
   { path: "/calendar", component: Calendar },
+  { path: "/rides", component: Rides },
   { path: "/vehicles", component: Vehicles },
+  { path: "/drivers", component: Drivers },
+  { path: "/users", component: Users },
   
   //Email
   { path: "/email-inbox", component: EmailInbox },
@@ -204,7 +210,6 @@ const userRoutes = [
   { path: "/profile", component: UserProfile },
   
   // this route should be at the end of all other routes
-  { path: "/", exact: true, component: () => <Redirect to="/homepage" /> },
   { path: "**", exact: true, component: () => <Redirect to="/pages-404" /> },
 ]
 
@@ -229,6 +234,7 @@ const authRoutes = [
 
 const mainRoutes = [
   
+  { path: "/", exact: true, component: () => <Redirect to="/homepage" /> },
   { path: "/homepage", component: Home },
   { path: "/driver", component: Driver },
   { path: "/about", component: About },

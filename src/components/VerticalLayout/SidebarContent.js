@@ -106,13 +106,31 @@ const SidebarContent = props => {
             </li>
 
             <li>
+              <Link to="/rides" className=" waves-effect">
+                <i className="mdi mdi-calendar-check"></i>
+                <span>{props.t("Rides")}</span>
+              </Link>
+            </li> 
+            <li>
               <Link to="/vehicles" className=" waves-effect">
                 <i className="mdi mdi-car"></i>
                 <span>{props.t("Vehicles")}</span>
               </Link>
             </li>
-
             <li>
+              <Link to="/drivers" className=" waves-effect">
+                <i className="mdi mdi-car-seat"></i>
+                <span>{props.t("Drivers")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/users" className=" waves-effect">
+                <i className="mdi mdi-account"></i>
+                <span>{props.t("Users")}</span>
+              </Link>
+            </li> 
+
+            {/* <li>
               <Link to="/calendar" className=" waves-effect">
                 <i className="mdi mdi-calendar-text"></i>
                 <span>{props.t("Calendar")}</span>
@@ -145,7 +163,7 @@ const SidebarContent = props => {
                 <li><Link to="/tasks-create">{props.t("Create Task")}</Link></li>
               </ul>
             </li>
-            {/* <li>
+            <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="mdi mdi-account-circle-outline"></i>
                 <span>{props.t("Pages")}</span>
