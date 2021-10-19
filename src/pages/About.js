@@ -1,6 +1,20 @@
 import React, { Component } from 'react'
 
 export default class About extends Component {
+ 
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+            team:[
+                {name:'Mohit Gupta',email:'guptamohit26@gmail.com',position:'Founder & CEO'},
+                {name:'Harshit Gupta',email:'4564654685',position:'Operations Head'},
+                {name:'AnkitDiwan',email:'4564654685',position:'Market & business development'},
+            ]            
+        }
+    }
+    
+
     render() {
         return (
             <div className="container">
@@ -18,43 +32,29 @@ export default class About extends Component {
                     {/* <div className="col-md-3">
                         <img src="/logo.png" alt="Logo" width="100%" />
                     </div> */}
-                </div>
-                {/* <div className="row">
-                    <div className="col-md-6 d-flex align-items-center">
-                        <img src="https://www.olacabs.com/webstatic/img/about/book-ride.svg" alt="" />
-                        <div className="p-3">
-                            <b>1 bn+</b>
-                            <p>Rides served every year</p>
-                        </div> 
-                    </div>
-                    <div className="col-md-6 d-flex align-items-center">
-                        <img src="https://www.olacabs.com/webstatic/img/about/city.svg" alt="" />
-                        <div className="p-3">
-                            <b>250+</b>
-                            <p>Cities serviced by the Ola to get you to your destination on time, every time</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-6 d-flex align-items-center">
-                        <img src="https://www.olacabs.com/webstatic/img/about/partner.svg" alt="" />
-                        <div className="p-3">
-                            <b>1.5mn</b>
-                            <p>Empowered entrepreneurs as driver-partners on the platform</p>
-                        </div>
-                    </div>
-                    <div className="col-md-6 d-flex align-items-center">
-                        <img src="https://www.olacabs.com/webstatic/img/about/employee.svg" alt="" />
-                        <div className="p-3">
-                            <b>7,000+</b>
-                            <p>Employees work tirelessly to provide you with the best in technology and service</p>
-                        </div>
-                    </div>
-                </div> */}
+                </div> 
                 <h1 className="display-6">Our Team</h1>
-                <h5>Mohit Gupta ( guptamohit26@gmail.com)</h5>
-                <h5>Founder & CEO</h5>
-                <h5>Behj de indiapvt ltd</h5>
+                <div className="row">
+                    {this.state.team.map((val,key)=>(
+                        <div key={key} className="col-md-4">
+                            <div className="card mb-3">
+                                <div className="row g-0">
+                                <div className="col-md-4">
+                                    <img src="/icons/avatar.png" className="img-fluid rounded-start" alt="Avatar" />
+                                </div>
+                                <div className="col-md-8">
+                                    <div className="card-body">
+                                    <h5 className="card-title">{val.name}</h5>
+                                    <div className="card-text">{val.email}</div>
+                                    <div className="card-text">{val.position}</div>
+                                    <p className="card-text"><small className="text-muted">Bhejde India pvt ltd</small></p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
             </div>
         )

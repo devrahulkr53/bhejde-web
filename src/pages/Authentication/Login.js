@@ -68,7 +68,7 @@ const Login = (props) => {
                         <AvField
                           name="email"
                           label="Email"
-                          value="admin@themesbrand.com"
+                          value="admin@gmail.com"
                           className="form-control"
                           placeholder="Enter email"
                           type="email"
@@ -110,18 +110,18 @@ const Login = (props) => {
                         </button>
                       </div>
 
-                      <div className="mt-4 text-center">
+                      {/* <div className="mt-4 text-center">
                         <Link to="/forgot-password" className="text-muted"><i
                           className="mdi mdi-lock me-1"></i> Forgot your password?</Link>
-                      </div>
+                      </div> */}
                     </AvForm>
 
                   </div>
                 </div>
               </div>
               <div className="mt-5 text-center">
-                <p>Don't have an account ? <Link to="/register"
-                  className="fw-medium text-primary"> Signup now </Link> </p>
+                {/* <p>Don't have an account ? <Link to="/register"
+                  className="fw-medium text-primary"> Signup now </Link> </p> */}
                 <p>© {new Date().getFullYear()} Qovex. Crafted with <i
                   className="mdi mdi-heart text-danger"></i> by Themesbrand
                         </p>

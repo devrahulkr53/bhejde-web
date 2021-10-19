@@ -116,6 +116,7 @@ import Rides from "../pages/Rides"
 import Vehicles from "../pages/Vehicles"
 import Drivers from "../pages/Drivers"
 import Users from "../pages/Users"
+import ContactUs from "../pages/ContactUs"
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard2 },
@@ -238,6 +239,7 @@ const mainRoutes = [
   { path: "/homepage", component: Home },
   { path: "/driver", component: Driver },
   { path: "/about", component: About },
+  { path: "/contactus", component: ContactUs },
   { path: "/terms", component: Terms },
   { path: "/privacy-policy", component: Privacy },
   

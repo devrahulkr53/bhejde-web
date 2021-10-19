@@ -23,30 +23,30 @@ export default function CreateVehicle(props) {
     }, [watch]);
 
     const onSubmit = data => {
-        // if(data.vehicleImage[0]){
-        //     setLoading(true) 
-        //     uploadFile(data.vehicleImage[0]).then(res=>{
-        //         db.collection("vehicles").add({
-        //             vehicleName:data.vehicleName,
-        //             vehicleDesc:data.vehicleDesc,
-        //             vehicleImage:res
-        //         })
-        //         .then((docRef) => {
-        //             setLoading(false)
-        //             props.setStep('read')
-        //             dispatch({type:"setAlert",payloads:{type:'success',msg:'New vehicle is added'}})
-        //         })
-        //         .catch((error) => {
-        //             setLoading(false)
-        //             dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}})
-        //         });
-        //     }).catch(err=>{
-        //         console.log(err)
-        //         setLoading(false)
-        //         dispatch({type:"setAlert",payloads:{type:'danger',msg:err.message}})    
-        //     }) 
+        if(data.vehicleImage[0]){
+            setLoading(true) 
+            uploadFile(data.vehicleImage[0]).then(res=>{
+                db.collection("vehicles").add({
+                    vehicleName:data.vehicleName,
+                    vehicleDesc:data.vehicleDesc,
+                    vehicleImage:res
+                })
+                .then((docRef) => {
+                    setLoading(false)
+                    props.setStep('read')
+                    dispatch({type:"setAlert",payloads:{type:'success',msg:'New vehicle is added'}})
+                })
+                .catch((error) => {
+                    setLoading(false)
+                    dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}})
+                });
+            }).catch(err=>{
+                console.log(err)
+                setLoading(false)
+                dispatch({type:"setAlert",payloads:{type:'danger',msg:err.message}})    
+            }) 
 
-        // }
+        }
     }
     
     const onImageChange = e => {

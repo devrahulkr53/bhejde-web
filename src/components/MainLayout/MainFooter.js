@@ -29,7 +29,7 @@ export default function MainFooter() {
                             </div>
                             <div className="col-md-9 d-flex align-items-center">
                                 <Link className="text-decoration-none pe-3" to="/about">About Bhejde</Link>
-                                <Link className="text-decoration-none pe-3" to="/contact">Contact Us</Link>
+                                <Link className="text-decoration-none pe-3" to="/contactus">Contact Us</Link>
                                 <Link className="text-decoration-none pe-3" to="/dashboard">Admin</Link>
                                 <div className="ms-auto">
                                     <Link className="text-decoration-none ps-3" to="/driver">Become a Driver</Link>

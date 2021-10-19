@@ -25,8 +25,30 @@ export default function Home() {
         },
     ]
 
-    return (
+    return (<React.Fragment>
+        <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                <img src="https://picsum.photos/1200/410" className="d-block w-100" alt="..." />
+                </div>
+                <div className="carousel-item">
+                <img src="https://i.picsum.photos/id/180/1200/450.jpg?hmac=zttMhfn8TfguDUDCb78R4QCEP93zsYVj4KYwOx2qLGM" className="d-block w-100" alt="..." />
+                </div>
+                <div className="carousel-item">
+                <img src="https://i.picsum.photos/id/484/1200/450.jpg?hmac=xJUYgSYGhwt8PRJLYrdMhujQrYebIM3OBcmXGvaG4A8" className="d-block w-100" alt="..." />
+                </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true" />
+                <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true" />
+                <span className="visually-hidden">Next</span>
+            </button>
+        </div>
         <div className="container">
+
             <div className="row">
                 <div className="col-md-7 my-auto">
                     <div className="display-5">One click booking for your logistics needs</div>
@@ -36,7 +58,7 @@ export default function Home() {
                     <button className="btn btn-warning my-2 px-4 btn-lg">Download app</button>
                 </div>
                 <div className="col-md-5 py-4">
-                    <img src="/images/taxi2.png" alt="Taxi" width="100%" />
+                    <img src="https://www.logisticadda.in/blog/wp-content/uploads/2020/07/advantage.png" alt="Taxi" width="100%" />
                 </div>
             </div>
             
@@ -70,5 +92,5 @@ export default function Home() {
             </div> */}
             
         </div>
-    )
+    </React.Fragment>)
 }

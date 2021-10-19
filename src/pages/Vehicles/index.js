@@ -64,7 +64,11 @@ const Vehicles = props => {
       <div className="page-content">
           {/* Render Breadcrumb */}
           <Breadcrumbs title="Apps" breadcrumbItem="Vehicles" />
-          {step === 'create' || vehicles?.length === 0 && !isLoading ? <CreateVehicle {...{step,setStep}} /> : <></>}
+          {vehicles?.length === 0 && !isLoading && step === 'read' && <>
+            <div className="display-6">No vehicles found</div>
+            <p className="text-secondary">Add new vehicles for drivers to register with their vehicles type</p>
+          </>}
+          {step === 'create' && !isLoading ? <CreateVehicle {...{step,setStep}} /> : <></>}
           {step === 'read' && <>
             {isLoading ? <div className="text-center">
               <div className="spinner-border text-info"></div>

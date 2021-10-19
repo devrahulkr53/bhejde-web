@@ -4,6 +4,7 @@ import {apiAuth, apiUrl} from '../globalVar';
 // import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import firebase from 'firebase';
 import { useDispatch } from 'react-redux'
+import { Redirect } from "react-router-dom"
 
 
 
@@ -17,14 +18,17 @@ const metadata = {
 export default function Driver() {
     // Create a root reference
     // const storage = getStorage(app);
+    var db = firebase.firestore();
     const storage = firebase.storage().ref();
     const dispatch = useDispatch()
     // const auth = getAuth(); 
     
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [submitLoading,setSubmitLoading] = React.useState(null)
+    const [isRegistered,setRegistered] = React.useState(false)
     const countryCode = '+91';
     const [data,setData] = React.useState(null);
+    const [vehicles,setVehicles] = React.useState([])
     const [aadharCard,setAadharCard] = React.useState(null)
     const [driverLicense,setDriverLicense] = React.useState(null)
     const [vehicleRC,setVehicleRC] = React.useState(null)
@@ -32,7 +36,16 @@ export default function Driver() {
     const [otp,setOtp] = React.useState(null);
     const [confirmationResult,setConfirmationResult] = React.useState(null)
     
-    
+    useEffect(()=>{
+        db.collection("vehicles").onSnapshot((querySnapshot) => {
+        var data = []
+        querySnapshot.forEach((doc) => {
+            doc.data() && data.push({id:doc.id,...doc.data()}) 
+        });
+        setVehicles(data)
+        });  
+    },[])
+
     useEffect(()=>{
         if(aadharCard && vehicleRC && vehicleInsurance && driverLicense){
             readyToSubmit();
@@ -49,12 +62,12 @@ export default function Driver() {
               // reCAPTCHA solved, allow signInWithPhoneNumber.
             }
           }); 
+          console.log('dsf')
         const appVerifier = window.recaptchaVerifier;
-        fetch(apiUrl+`users.json?auth=${apiAuth}&orderBy="phone"&startAt="${data.phone}"&endAt="${data.phone}"`).then(d=>d.json()).then(json=>{
-            if(Object.keys(json).length > 0){
-                dispatch({type:"setAlert",payloads:{type:'warning',msg:'You are already registered driver'}})
-                setSubmitLoading(null)
-            }else{
+        db.collection("users").where("phone","==",data.phone)
+        .get()
+        .then((querySnapshot) => {
+            if(querySnapshot.docs.length === 0){
                 firebase.auth().signInWithPhoneNumber(phone, appVerifier)
                     .then((res) => {
                     // SMS sent. Prompt user to type the code from the message, then sign the
@@ -68,8 +81,17 @@ export default function Driver() {
                     dispatch({type:"setAlert",payloads:{type:'danger',msg:err.message}})
                     setSubmitLoading(null)
                 }); 
+
+            }else{
+                dispatch({type:"setAlert",payloads:{type:'warning',msg:'You are already registered driver'}})
+                setSubmitLoading(null)
+
             }
         })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+     
     }
     
     const verifyOTP = () => {
@@ -80,16 +102,16 @@ export default function Driver() {
             setData({...data,user})
             uploadFiles(data.aadharCard[0]).then(res=>{
                 setAadharCard(res)
-            })
+            }).catch(err=>console.log(err.message))
             uploadFiles(data.vehicleRC[0]).then(res=>{
                 setVehicleRC(res)
-            })
+            }).catch(err=>console.log(err.message))
             uploadFiles(data.driverLicense[0]).then(res=>{
                 setDriverLicense(res)
-            })
+            }).catch(err=>console.log(err.message))
             uploadFiles(data.vehicleInsurancePaper[0]).then(res=>{
                 setVehicleInsurance(res)
-            })
+            }).catch(err=>console.log(err.message))
             // ...
         }).catch(err=>{
             dispatch({type:"setAlert",payloads:{type:'danger',msg:'Invalid OTP'}})
@@ -98,32 +120,35 @@ export default function Driver() {
     }
     
     const readyToSubmit = () => {
-        fetch(apiUrl+'users.json?auth='+apiAuth,{
-            method:"POST",
-            headers:{
-                "Access-Control-Allow-Origin":"*"
-            },
-            body:JSON.stringify({
-                name:data.name,
-                phone:data.phone,
-                role:3,
-                aadharCard,vehicleInsurance,vehicleRC,countryCode,
-                uid:data.user.uid,
-                token:data.user.accessToken,
-                verified:false
+        var x = {
+            name:data.name,
+            phone:data.phone,
+            role:3,
+            aadharCard,vehicleInsurance,vehicleRC,countryCode,
+            uid:data.user.uid,
+            token:data.user.refreshToken,
+            verified:false
+        }
+        try{
+            db.collection("users").add(x)
+            .then((docRef) => {
+                // dispatch({type:"setAlert",payloads:{type:'success',msg:'You are now registered and verification is in progress'}})
+                setSubmitLoading(null)
+                setRegistered(true)
             })
-        }).then(d=>d.json()).then(json=>{
-            dispatch({type:"setAlert",payloads:{type:'success',msg:'You are now registered and verification is in progress'}})
-            setSubmitLoading(null)
-            setConfirmationResult(null)
-        }).catch(err=>console.log(err))
+            .catch((error) => {
+                dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}})
+            }); 
+        }catch(err){
+            console.log(err)
+        }
         
     }
 
 
      
 
-
+ 
     const uploadFiles = async (file) => {
         return new Promise(function(resolve,reject){
             
@@ -174,80 +199,82 @@ export default function Driver() {
                 <p>Apply now to become bhejde driver. Start earning in 24 hours!</p>
                 </div>
                 <div className="col-md-5">
-                <form onSubmit={handleSubmit(onSubmit)} className="my-4 w-100">
-                    <div className="display-6">Register your vehicle</div>
-                    {/* <small>Register your vehicle and become bhejde driver.</small> */}
-                    {/* <small> Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</small> */}
-                    <div className="my-4"></div>
-                    <div id="sign-in-button"></div>
+                    {isRegistered ? <div className="text-center my-3">
+                        <img src="/icons/success.png" alt="Success" width="120px" />
+                        <div className="display-6">Congratulations !</div>
+                        <div>You are now registered and verification is in progress</div>
+                    </div>:<>
+                        <form onSubmit={handleSubmit(onSubmit)} className="my-4 w-100">
+                            <div className="display-6">Register your vehicle</div>
+                            {/* <small>Register your vehicle and become bhejde driver.</small> */}
+                            {/* <small> Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</small> */}
+                            <div className="my-4"></div>
+                            <div id="sign-in-button"></div>
 
 
-                    {!confirmationResult ? <>
-                        {/* <small className="text-secondary">Personal Information</small> */}
-                        <div className="input-group my-2">
-                            <input type="text" className={`form-control`} id="name" {...register("name",{required:true})} placeholder="Driver name" />
-                            {errors.name && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
-                        </div>
-                        <div className="input-group my-2">
-                            <div className="input-group-prepend">
-                                <div className="input-group-text">+91</div>
-                            </div>
-                            <input type="number" className={`form-control`} id="phone" {...register("phone",{required:true,minLength:10,maxLength:10})} placeholder="Phone number" />
-                            {errors.phone && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
-                        </div>
-                        <select className={`form-select mb-2 ${errors.vehicleType && 'border border-danger'}`} id="vehicleType" {...register("vehicleType",{required:true})}>
-                            <option value="">Select vehicle type</option>
-                            <option value="SEDAN">SEDAN</option>
-                            <option value="COUPE">COUPE</option>
-                            <option value="PICKUP TRUCK">PICKUP TRUCK</option>
-                            <option value="Hatchback">Hatchback</option>
-                            <option value="Crossover">Crossover</option>
-                        </select>
-                        <small className="text-secondary">Aadhar Card</small>
-                        <label htmlFor="aadharCard" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Aadhar Card</div> */}
-                            <input type="file" className={`form-control`} id="aadharCard" {...register("aadharCard",{required:true})} placeholder="Aadhar Card" />
-                            <img src="/icons/aadharcard.png" alt="Aadhar Card" width="60px" />
-                            {errors.aadharCard && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
-                        </label>
-                        <small className="text-secondary">Driver License</small>
-                        <label htmlFor="driverLicense" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Driver License</div> */}
-                            <input type="file" className={`form-control`} id="driverLicense" {...register("driverLicense",{required:true})} placeholder="Vehicle Registration Number" />
-                            <img src="/icons/rc.png" alt="" width="60px" className="" /> 
-                            {errors.driverLicense && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
-                        </label>
-                        <small className="text-secondary">Vehicle Registration Certificate</small>
-                        <label htmlFor="vehicleRC" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Vehicle Registration Certificate</div> */}
-                            <input type="file" className={`form-control`} id="vehicleRC" {...register("vehicleRC",{required:true})} placeholder="Vehicle Registration Number" />
-                            <img src="/icons/rc.png" alt="" width="60px" className="" /> 
-                            {errors.vehicleRC && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
-                        </label>
-                        <small className="text-secondary">Vehicle Insurance</small>
-                        <label htmlFor="vehicleInsurancePaper" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
-                            {/* <div>Vehicle Insurance paper</div> */}
-                            <input type="file" className={`form-control`} id="vehicleInsurancePaper" {...register("vehicleInsurancePaper",{required:true})} placeholder="Vehicle Registration Number" />
-                            <img src="/icons/insurance.png" alt="" width="60px" />
-                            {errors.vehicleInsurancePaper && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
-                        </label>
-                        
-                        <div className="text-start my-3">
-                            <button type="submit" disabled={submitLoading===true} className={`btn px-5 ${submitLoading === false ? 'btn-secondary':'btn-warning'}`}>
-                                {submitLoading === null ? 'Submit':submitLoading === true ? <div className="d-flex align-items-center"><div className="spinner-border text-dark"></div><div className="mx-2">Loading ...</div></div>:'OTP sent'}
-                            </button>
-                        </div>
-                    
-                    </>:<>
-                        <img src="./icons/otp.png" className="w-50" alt="OTP" />
-                        <input type="number" id="otp" onChange={e=>setOtp(e.target.value)} className="form-control my-2" placeholder="Enter otp" />
-                        <button type="button" disabled={submitLoading===true} className={`btn px-5 btn-warning`} onClick={verifyOTP}>
-                            {submitLoading === null ? 'Verify OTP':submitLoading === true ? <div className="d-flex align-items-center"><div className="spinner-border text-dark"></div><div className="mx-2">Loading ...</div></div>:'Verified'}
-                        </button>
+                            {!confirmationResult ? <>
+                                {/* <small className="text-secondary">Personal Information</small> */}
+                                <div className="input-group my-2">
+                                    <input type="text" className={`form-control`} id="name" {...register("name",{required:true})} placeholder="Driver name" />
+                                    {errors.name && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
+                                </div>
+                                <div className="input-group my-2">
+                                    <div className="input-group-prepend">
+                                        <div className="input-group-text">+91</div>
+                                    </div>
+                                    <input type="number" className={`form-control`} id="phone" {...register("phone",{required:true,minLength:10,maxLength:10})} placeholder="Phone number" />
+                                    {errors.phone && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
+                                </div>
+                                <select className={`form-select mb-2 ${errors.vehicleType && 'border border-danger'}`} id="vehicleType" {...register("vehicleType",{required:true})}>
+                                    <option value="">Select vehicle type</option>
+                                    {vehicles.map((val,key)=>(<option key={key} value={val.id}>{val.vehicleName}</option>))}
+                                </select>
+                                <small className="text-secondary">Aadhar Card</small>
+                                <label htmlFor="aadharCard" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                                    {/* <div>Aadhar Card</div> */}
+                                    <input type="file" className={`form-control`} id="aadharCard" {...register("aadharCard",{required:true})} placeholder="Aadhar Card" />
+                                    <img src="/icons/aadharcard.png" alt="Aadhar Card" width="60px" />
+                                    {errors.aadharCard && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                </label>
+                                <small className="text-secondary">Driver License</small>
+                                <label htmlFor="driverLicense" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                                    {/* <div>Driver License</div> */}
+                                    <input type="file" className={`form-control`} id="driverLicense" {...register("driverLicense",{required:true})} placeholder="Vehicle Registration Number" />
+                                    <img src="/icons/rc.png" alt="" width="60px" className="" /> 
+                                    {errors.driverLicense && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                </label>
+                                <small className="text-secondary">Vehicle Registration Certificate</small>
+                                <label htmlFor="vehicleRC" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                                    {/* <div>Vehicle Registration Certificate</div> */}
+                                    <input type="file" className={`form-control`} id="vehicleRC" {...register("vehicleRC",{required:true})} placeholder="Vehicle Registration Number" />
+                                    <img src="/icons/rc.png" alt="" width="60px" className="" /> 
+                                    {errors.vehicleRC && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                </label>
+                                <small className="text-secondary">Vehicle Insurance</small>
+                                <label htmlFor="vehicleInsurancePaper" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
+                                    {/* <div>Vehicle Insurance paper</div> */}
+                                    <input type="file" className={`form-control`} id="vehicleInsurancePaper" {...register("vehicleInsurancePaper",{required:true})} placeholder="Vehicle Registration Number" />
+                                    <img src="/icons/insurance.png" alt="" width="60px" />
+                                    {errors.vehicleInsurancePaper && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                </label>
+                                
+                                <div className="text-start my-3">
+                                    <button type="submit" disabled={submitLoading===true} className={`btn px-5 ${submitLoading === false ? 'btn-secondary':'btn-warning'}`}>
+                                        {submitLoading === null ? 'Submit':submitLoading === true ? <div className="d-flex align-items-center"><div className="spinner-border text-dark"></div><div className="mx-2">Loading ...</div></div>:'OTP sent'}
+                                    </button>
+                                </div>
+                            
+                            </>:<>
+                                <img src="./icons/otp.png" className="w-50" alt="OTP" />
+                                <input type="number" id="otp" onChange={e=>setOtp(e.target.value)} className="form-control my-2" placeholder="Enter otp" />
+                                <button type="button" disabled={submitLoading===true} className={`btn px-5 btn-warning`} onClick={verifyOTP}>
+                                    {submitLoading === null ? 'Verify OTP':submitLoading === true ? <div className="d-flex align-items-center"><div className="spinner-border text-dark"></div><div className="mx-2">Loading ...</div></div>:'Verified'}
+                                </button>
+                            </>}
+
+
+                        </form>
                     </>}
-
-
-                </form>
 
                 </div>
             </div>

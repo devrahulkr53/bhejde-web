@@ -68,7 +68,7 @@ const Login = (props) => {
                         <AvField
                           name="email"
                           label="Email"
-                          value="admin@themesbrand.com"
+                          value="admin@gmail.com"
                           className="form-control"
                           placeholder="Enter email"
                           type="email"
