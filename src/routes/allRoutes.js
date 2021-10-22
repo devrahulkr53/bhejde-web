@@ -109,7 +109,7 @@ import UserProfile from "../pages/Authentication/user-profile"
 
 import Home from "../pages/Home"
 import Driver from "../pages/Driver"
-import About from "../pages/About"
+import About from "../pages/About/index"
 import Terms from "../pages/Terms"
 import Privacy from "../pages/Privacy"
 import Rides from "../pages/Rides"

@@ -33,13 +33,13 @@ export default function MainFooter() {
                                 <Link className="text-decoration-none pe-3" to="/dashboard">Admin</Link>
                                 <div className="ms-auto">
                                     <Link className="text-decoration-none ps-3" to="/driver">Become a Driver</Link>
-                                    <Link className="text-decoration-none ps-3" to="/">Dowload app</Link>
+                                    <a className="text-decoration-none ps-3" href="/">Dowload app</a>
                                 </div>
                             </div>
                         </div>
                         <div className="row my-2">
                             <div className="col-md-3">
-                                <Link to="/"><img src="/logo.png" alt="Logo" width="120px" /></Link>
+                                <a href="/"><img src="/logo.png" alt="Logo" width="120px" /></a>
                             </div>
                             <div className="col-md-9 d-flex align-items-center">
                                 <div className="ms-auto text-end">

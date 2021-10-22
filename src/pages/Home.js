@@ -26,28 +26,67 @@ export default function Home() {
     ]
 
     return (<React.Fragment>
-        <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                <img src="https://picsum.photos/1200/410" className="d-block w-100" alt="..." />
+        
+        {/* Bnner Section */}
+        <section className="banner-section mt-0 style-two">
+        <div className="swiper-container banner-slider">
+            <div className="swiper-wrapper">
+            {/* Slide Item */}
+            <div className="swiper-slide" style={{backgroundImage: 'url(assets/images/main-slider/image-4.jpg)'}}>
+                <div className="content-outer">
+                <div className="content-box">
+                    <div className="inner">
+                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
+                    <h1>Delivering <br />service on time</h1>
+                    <div className="text"><i className="far fa-meh" />4 Types of Freight Services</div>
+                    <div className="link-box">
+                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get a Quote</span></a>
+                    </div>
+                    </div>
                 </div>
-                <div className="carousel-item">
-                <img src="https://i.picsum.photos/id/180/1200/450.jpg?hmac=zttMhfn8TfguDUDCb78R4QCEP93zsYVj4KYwOx2qLGM" className="d-block w-100" alt="..." />
-                </div>
-                <div className="carousel-item">
-                <img src="https://i.picsum.photos/id/484/1200/450.jpg?hmac=xJUYgSYGhwt8PRJLYrdMhujQrYebIM3OBcmXGvaG4A8" className="d-block w-100" alt="..." />
                 </div>
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true" />
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true" />
-                <span className="visually-hidden">Next</span>
-            </button>
+            {/* Slide Item */}
+            <div className="swiper-slide" style={{backgroundImage: 'url(assets/images/main-slider/image-5.jpg)'}}>
+                <div className="content-outer">
+                <div className="content-box">
+                    <div className="inner">
+                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
+                    <h1>New track <br />                                     for our busines</h1>
+                    <div className="text"><i className="far fa-meh" />4 Types of Freight Services</div>
+                    <div className="link-box">
+                        <a href="service.html" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Our Services</span></a>
+                    </div>
+                    </div>                               
+                </div>
+                </div>
+            </div>
+            {/* Slide Item */}
+            <div className="swiper-slide" style={{backgroundImage: 'url(assets/images/main-slider/image-6.jpg)'}}>
+                <div className="content-outer">
+                <div className="content-box">
+                    <div className="inner">
+                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
+                    <h1>Quality is <br />our first concern</h1>
+                    <div className="text"><i className="far fa-meh" />1000+ Positive Reviews</div>
+                    <div className="link-box">
+                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Testimonials</span></a>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
         </div>
-        <div className="container">
+        <div className="banner-slider-nav style-three">
+            <div className="banner-slider-control banner-slider-button-prev"><span><i className="flaticon-right-arrow-6" /></span></div>
+            <div className="banner-slider-control banner-slider-button-next"><span><i className="flaticon-right-arrow-6" /></span> </div>
+        </div>
+        <div className="banner-slider-pagination" />
+        </section>
+        {/* End Bnner Section */}
+
+        {/* <div className="container">
 
             <div className="row">
                 <div className="col-md-7 my-auto">
@@ -58,14 +97,13 @@ export default function Home() {
                     <button className="btn btn-warning my-2 px-4 btn-lg">Download app</button>
                 </div>
                 <div className="col-md-5 py-4">
-                    <img src="https://www.logisticadda.in/blog/wp-content/uploads/2020/07/advantage.png" alt="Taxi" width="100%" />
+                    <img src="https://www.logisticadda.in/blog/wp-content/uploads/2020/07/advantage.png" ="Taxi" width="100%" />
                 </div>
             </div>
             
             <div className="row my-4 py-4">
                 <div className="col-md-12">
-                    <h3 className="display-6">Why ride with Bhejde?</h3>
-                    {/* <div className="text-secondary">The best way to travel to your destination</div> */}
+                    <h3 className="display-6">Why ride with Bhejde?</h3> 
                     <ul>
                         
                         <li>One click booking for your logistics needs</li>
@@ -75,22 +113,8 @@ export default function Home() {
 
                     </ul>
                 </div>
-            </div> 
-            {/* <div className="row">
-                {whyBhejDe.map((e,k)=>(
-                    <div key={k} className="col-md-6">
-                        <div className="d-flex align-items-center">
-                            <img src={e.img} alt="Gallery"  width="120px" />
-                            <div className="p-3">
-                                <h4> {e.title} </h4>
-                                <div>{e.desc}</div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-                 
-            </div> */}
+            </div>  
             
-        </div>
+        </div> */}
     </React.Fragment>)
 }

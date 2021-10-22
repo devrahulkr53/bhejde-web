@@ -2,47 +2,214 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 
-export default class MainNavbar extends Component {
-    render() {
-        return (
-            <div className="container-fluid navbar-light bg-light py-2">
-                <nav className="navbar navbar-expand-lg container p-0">
-                    <div className="container-fluid p-0">
-                        <div className="navbar-brand d-flex align-items-center" href="#">
-                            <Link to="/"><img src="/logoIco.png" alt="Logo" width="80px" /></Link>
-                            <div className="px-3">
-                                <div className="display-6">Bhejde India</div>
-                                <small className="text-secondary">Move with us</small>
-                            </div>
-                        </div>
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon" />
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-                            {/* <li className="nav-item h6 px-2">
-                            <Link className="nav-link text-warning active" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item h6 px-2">
-                            <Link className="nav-link text-warning" to="/driver">Driver</Link>
-                            </li> 
-                            <li className="nav-item h6 px-2">
-                            <Link className="nav-link text-warning" to="/about">About</Link>
-                            </li>  */}
-                            <li className="nav-item me-1">
-                                <button className="btn btn-warning">Become a driver</button>
-                            </li>
-                            <li className="nav-item">
-                                <button className="btn btn-outline-warning">Packers & Movers</button>
-                            </li>
-                        </ul> 
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            
+// import useScript from '../../hooks/useScript';
 
-            )
+export default function MainNavbar() {
+        
+      
+        return (
+            <header className="main-header header-style-two">
+              {/* Header Top */}
+              <div className="header-top">
+                <div className="auto-container">
+                  <div className="inner-container">
+                    <div className="left-column">
+                      <ul className="social-icon">
+                        <li><a href="#"><i className="fab fa-facebook-f" /></a></li>
+                        <li><a href="#"><i className="fab fa-twitter" /></a></li>
+                        <li><a href="#"><i className="fab fa-google-plus-g" /></a></li>
+                        <li><a href="#"><i className="fab fa-youtube" /></a></li>
+                      </ul>
+                      {/* <div className="search-box">
+                        <form className="search-form">
+                          <input type="search" placeholder="Search..." />
+                          <button type="submit"><i className="far fa-search" /></button>
+                        </form>
+                      </div> */}
+                    </div>
+                    <div className="right-column">
+                      {/* <div className="location">
+                        <span className="flaticon-cursor" />
+                        <form action="#" className="location-switcher">
+                          <select className="selectpicker">
+                            <option value={1}>Melbourne</option>
+                            <option value={2}>New York</option>
+                            <option value={3}>Chicago</option>
+                            <option value={4}>Boston</option>
+                          </select>
+                        </form>
+                      </div> */}
+                      <div className="phone-number"><i className="flaticon-calling" /><a href="tel:(+61)32456789" />(+61) 324 56 789</div>
+                      <div className="mail-address"><i className="flaticon-mail" />(<a href="tel:(+61)32456789790">info@transida.com</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Header Upper */}
+              <div className="header-upper">
+                <div className="auto-container">
+                  <div className="inner-container">
+                    {/*Logo*/}
+                    <div className="logo-box">
+                      <div className="logo"><a href="index.html"><img src="assets/images/logo-v2.png"  /></a></div>
+                    </div>
+                    <div className="header-left-option">
+                      <div className="option-box">
+                        <div className="icon"><span className="flaticon-tracking" /></div>
+                        <h4>Track Shipment <i className="flaticon-up-arrow" /></h4>
+                        <div className="order-form-area">
+                          <div className="wrapper-box">
+                            <h4>Track Your Shipment</h4>
+                            <form className="order-form">
+                              <div className="form-group">
+                                <input type="text" placeholder="Enter Shipment Number *" />
+                              </div>
+                              <div className="form-group">
+                                <select className="selectpicker" name="make">
+                                  <option value="*">Type of Reference *</option>
+                                  <option value=".category-1">Package</option>
+                                  <option value=".category-3">Freight</option>
+                                  <option value=".category-4">Mail of Innovations</option>
+                                </select>
+                              </div>
+                              <div className="form-group">
+                                <button type="submit" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Track Now</span></button>
+                              </div>
+                            </form>
+                          </div>                        
+                        </div>
+                      </div>
+                      <div className="option-box">
+                        <a href="request-quote.html">
+                          <div className="icon"><span className="flaticon-test" /></div>
+                          <h4>Get A Quote <i className="flaticon-up-arrow" /></h4>
+                        </a>
+                      </div>
+                    </div>
+                    <div className="right-column ml-md-auto">
+                      {/*Nav Box*/}
+                      <div className="nav-outer">
+                        {/*Mobile Navigation Toggler*/}
+                        <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar-2.png"  /></div>
+                        {/* Main Menu */}
+                        <nav className="main-menu navbar-expand-md navbar-light">
+                          <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul className="navigation">
+                              <li><a href="/">Home</a></li>
+                              <li><Link to="/about">About Us</Link></li>
+                              <li><Link to="/contactus">Contact</Link></li>
+                            </ul>
+                          </div>
+                        </nav>
+                      </div>
+                      <div className="navbar-right-info">
+                        <div className="sign-in">
+                          <button className="btn btn-outline-warning">Packers & Movers</button>
+                        </div>
+                        <div className="language">
+                          <Link to="/driver"><button className="btn btn-warning">Become a Driver</button></Link>
+                        </div>
+                      </div>
+                    </div>                        
+                  </div>
+                </div>
+              </div>
+              {/*End Header Upper*/}
+              {/* Sticky Header  */}
+              {/* <div className="sticky-header">
+                <div className="header-upper">
+                  <div className="auto-container">
+                    <div className="inner-container">
+                      
+                      <div className="logo-box">
+                        <div className="logo"><a href="index.html"><img src="assets/images/logo-v2.png"  /></a></div>
+                      </div>
+                      <div className="header-left-option">
+                        <div className="option-box">
+                          <div className="icon"><span className="flaticon-tracking" /></div>
+                          <h4>Track Shipment <i className="flaticon-up-arrow" /></h4>
+                          <div className="order-form-area">
+                            <div className="wrapper-box">
+                              <h4>Track Your Shipment</h4>
+                              <form className="order-form">
+                                <div className="form-group">
+                                  <input type="text" placeholder="Enter Shipment Number *" />
+                                </div>
+                                <div className="form-group">
+                                  <select className="selectpicker" name="make">
+                                    <option value="*">Type of Reference *</option>
+                                    <option value=".category-1">Package</option>
+                                    <option value=".category-3">Freight</option>
+                                    <option value=".category-4">Mail of Innovations</option>
+                                  </select>
+                                </div>
+                                <div className="form-group">
+                                  <button type="submit" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Track Now</span></button>
+                                </div>
+                              </form>
+                            </div>                        
+                          </div>
+                        </div>
+                        <div className="option-box">
+                          <a href="request-quote.html">
+                            <div className="icon"><span className="flaticon-test" /></div>
+                            <h4>Get A Quote<i className="flaticon-up-arrow" /></h4>
+                          </a>
+                        </div>
+                      </div>
+                      <div className="right-column"> 
+                        <div className="nav-outer"> 
+                          <div className="mobile-nav-toggler"><img src="assets/images/icons/icon-bar-2.png"  /></div>
+                          <nav className="main-menu navbar-expand-md navbar-light">
+                          </nav>
+                        </div>
+                        <div className="navbar-right-info">
+                          <div className="sign-in"><a href="#"><i className="flaticon-delivery-man-1" />Sign In</a></div>
+                          <div className="language">
+                            <span className="icon"><img src="assets/images/resource/flags/de.png"  /></span>
+                            <form action="#" className="language-switcher">
+                              <select className="selectpicker">
+                                <option value={1}>Eng</option>
+                                <option value={2}>Fre</option>
+                                <option value={3}>Ita</option>
+                                <option value={4}>Spa</option>
+                              </select>
+                            </form>
+                          </div>
+                        </div>
+                      </div>                        
+                    </div>
+                  </div>
+                </div>
+              </div> */}
+              {/* End Sticky Menu */}
+              {/* Mobile Menu  */}
+              <div className="mobile-menu">
+                <div className="menu-backdrop" />
+                <div className="close-btn"><span className="icon flaticon-remove" /></div>
+                <nav className="menu-box">
+                  <div className="nav-logo"><a href="index.html"><img src="assets/images/logo-v2.png" /></a></div>
+                  <div className="menu-outer">{/*Here Menu Will Come Automatically Via Javascript / Same Menu as in Header*/}</div>
+                  {/*Social Links*/}
+                  <div className="social-links">
+                    <ul className="clearfix">
+                      <li><a href="#"><span className="fab fa-twitter" /></a></li>
+                      <li><a href="#"><span className="fab fa-facebook-square" /></a></li>
+                      <li><a href="#"><span className="fab fa-pinterest-p" /></a></li>
+                      <li><a href="#"><span className="fab fa-instagram" /></a></li>
+                      <li><a href="#"><span className="fab fa-youtube" /></a></li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>{/* End Mobile Menu */}
+              <div className="nav-overlay">
+                <div className="cursor" />
+                <div className="cursor-follower" />
+              </div>
+
+            </header>
+
+          )
         }
-    }
+    
  

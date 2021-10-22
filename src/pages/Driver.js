@@ -178,25 +178,72 @@ export default function Driver() {
   
 
     return (
-        <div className="container">
+        <div className="container-fluid">
 
             <div className="row">
                 <div className="col-md-7 d-none d-md-block">
-                <div style={{opacity:0.7}}> 
-                    <svg width="303" height="185" viewBox="0 0 303 185" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M161.71 0V14.5301H167.276V71.0729H174.588V53.6601H178.439V49.4541L186.862 53.6601H188.926V43.1997L199.004 28.0385L209.082 43.1997V78.772H213.813V85.6847H220.794V57.472H226.579L226.338 45.766H233.033V42.4133H239.817L240.861 22.1391L241.904 42.4133H243.209V45.766H244.969L244.324 77.1158H245.574V63.2849L259.599 53.6601V71.0729H273.626V57.472H282.284V49.4541L297.115 61.6222V49.4541L317 65.7689V185H302.169H297.115H282.916H282.284H273.626H259.599H245.574H242.667H230.085H228.641H221.605H220.794H209.082H201.449H188.926H174.588H167.276H154.884H149.586H137.16H133.791H122.38H116.167H106.13H102.494H97.3182H88.5065H86.2441H77.4325H72.6773H68.6203H52.7926H46.2349H37.7058H29.1756H22.6089H20.6465H11.1198H8.58331H0V68.7999H6.75449L6.28098 45.766H20.6465V12.4235H29.1756V19.5111H37.7058V26.0002H46.2349V59.4552H52.7926V43.9007H55.1276V42.1852H70.3418V43.9007H72.6773V76.3348H77.4325V34.6503H79.7685V32.9348H94.9821V34.6503H97.3182V58.6541H102.494V43.9007H104.83V42.1852H120.043V43.9007H122.38V49.4541L127.262 55.5639V65.8074H133.791V59.4552H137.16V43.9007H149.586V34.6918L154.884 29.4393V14.5301H160.451V0H161.71Z" fill="#FFC815"/>
-                    </svg>
-                    <div style={{marginTop:"-80px"}}>
-                        <svg width="192" height="141" viewBox="0 0 192 141" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M94.0558 0H94.8184V11.0743H98.1902V22.4376L101.399 26.4407V33.4594H108.925V45.3145H110.966V50.1559H114.92V42.3487L117.877 37.692V33.4594H119.292V32.152H128.507V33.4594H129.921V44.7039H133.057V26.4091H134.471V25.1017H143.686V26.4091H145.101V58.1795H147.981V33.4594H149.396V32.152H158.61V33.4594H160.025V45.3145H163.997V19.8163H169.162V14.8706H174.329V9.46874H179.495V34.8811H188.196L187.909 52.4366H192V141H0V50.1266L12.044 37.692V46.9661L21.0269 37.692V43.803H26.2709V54.1691H34.7662V40.8977L43.2613 48.2334V58.7747H44.0181L43.6274 34.8811H44.6937V32.3259H45.484L46.1159 16.8736L46.7481 32.3259H50.8567V34.8811H54.9117L54.7658 43.803H58.2698V65.3057H62.4979V60.037H65.3634V32.9252L71.4674 21.3699L77.5718 32.9252V40.8977H78.8216L83.9235 37.692V40.8977H86.2558V54.1691H90.6843V11.0743H94.0558V0Z" fill="#FFE56B"/>
+                    <section className="pricing-section">
+                        <div className="auto-container">
+                            {/* <div className="sec-title text-center">
+                                <div className="sub-title text-center">Pricing &amp; Plans</div>
+                                <h2>Our Effective and Affordable Pricing Plans</h2>
+                            </div> */}
+                            <div className="row m-0">
+                            <div className="col-md-6 pricing-block">
+                                <div className="inner-box wow fadeInUp" data-wow-duration="1500ms">
+                                    <div className="category-wrapper"><div className="category">Basic Plan</div></div>
+                                    <div className="price">Rs. 4999</div>
+                                    <div className="time">Per Year</div>
+                                    <ul className="content px-0">
+                                        <li>INDIRECT CONTACT </li>
+                                        <li>GOOGLE ADVERTISING</li>
+                                        <li>LISTING ON WEBSITE</li>
+                                        <li>5 PHOTOS</li>
+                                    </ul>
+                                    <div className="link-box">
+                                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Buy Now </span></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-6 pricing-block style-two">
+                                <div className="inner-box wow fadeInUp" data-wow-duration="1500ms" style={{backgroundImage: 'url(assets/images/resource/image-3.jpg)'}}>
+                                    <div className="category-wrapper"><div className="category">Premium Plan</div></div>
+                                    <div className="price">Rs. 6999</div>
+                                    <div className="time">Per Year</div>
+                                    <ul className="content px-0 ">
+                                        <li>DIRECT CONTACT </li>
+                                        <li>TOP ON GOOGLE SEARCH</li>
+                                        <li>TOP ON WEBSITE SEARCHS</li>
+                                        <li>SMS MARKETING</li>
+                                        <li>CUSTOMER DETAILS VIA SMS</li>
+                                        <li>10 PHTOS OF VEHICLES AND YOUR BUSINESS</li>
+                                        <li>PROFILE MANAGEMENT AGENT</li>
+                                    </ul>
+                                    <div className="link-box">
+                                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Buy Now </span></a>
+                                    </div>
+                                </div>
+                            </div>
+                             
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* <div style={{opacity:0.7}}> 
+                        <svg width="303" height="185" viewBox="0 0 303 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M161.71 0V14.5301H167.276V71.0729H174.588V53.6601H178.439V49.4541L186.862 53.6601H188.926V43.1997L199.004 28.0385L209.082 43.1997V78.772H213.813V85.6847H220.794V57.472H226.579L226.338 45.766H233.033V42.4133H239.817L240.861 22.1391L241.904 42.4133H243.209V45.766H244.969L244.324 77.1158H245.574V63.2849L259.599 53.6601V71.0729H273.626V57.472H282.284V49.4541L297.115 61.6222V49.4541L317 65.7689V185H302.169H297.115H282.916H282.284H273.626H259.599H245.574H242.667H230.085H228.641H221.605H220.794H209.082H201.449H188.926H174.588H167.276H154.884H149.586H137.16H133.791H122.38H116.167H106.13H102.494H97.3182H88.5065H86.2441H77.4325H72.6773H68.6203H52.7926H46.2349H37.7058H29.1756H22.6089H20.6465H11.1198H8.58331H0V68.7999H6.75449L6.28098 45.766H20.6465V12.4235H29.1756V19.5111H37.7058V26.0002H46.2349V59.4552H52.7926V43.9007H55.1276V42.1852H70.3418V43.9007H72.6773V76.3348H77.4325V34.6503H79.7685V32.9348H94.9821V34.6503H97.3182V58.6541H102.494V43.9007H104.83V42.1852H120.043V43.9007H122.38V49.4541L127.262 55.5639V65.8074H133.791V59.4552H137.16V43.9007H149.586V34.6918L154.884 29.4393V14.5301H160.451V0H161.71Z" fill="#FFC815"/>
                         </svg>
-                        <svg width="183" height="141" viewBox="0 0 183 141" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fillRule="evenodd" clipRule="evenodd" d="M121.489 0V11.0743H117.134V54.1691H111.414V40.8977H108.401V37.692L101.811 40.8977H100.197V32.9252L92.3121 21.3699L84.4277 32.9252V60.037H80.7265V65.3057H75.2652V43.803H70.7391L70.9276 34.8811H65.6899V32.3259H60.383L59.5663 16.8736L58.7501 32.3259H57.7293V34.8811H56.3521L56.8567 58.7747H55.8791V48.2334L44.9064 40.8977V54.1691H33.9332V43.803H27.1598V37.692L15.5569 46.9661V37.692L0 50.1266V141H11.6025H15.5569H26.6654H27.1598H33.9332H44.9064H55.8791H58.1533H67.997H69.126H74.6305H75.2652H84.4277H90.3997H100.197H111.414H117.134H126.829H130.974H140.695H143.331H152.258H157.119H164.971H167.815H171.865H178.758H180.528H187.422H191.142H194.316H206.699H211.829H218.501H225.175H230.312H231.848H239.301H241.285H248V52.4366H242.716L243.086 34.8811H231.848V9.46874H225.175V14.8706H218.501V19.8163H211.829V45.3145H206.699V33.4594H204.872V32.152H192.969V33.4594H191.142V58.1795H187.422V26.4091H185.594V25.1017H173.692V26.4091H171.865V44.7039H167.815V33.4594H165.988V32.152H154.086V33.4594H152.258V37.692L148.439 42.3487V50.1559H143.331V45.3145H140.695V33.4594H130.974V26.4407L126.829 22.4376V11.0743H122.474V0H121.489Z" fill="#FFBC00"/>
-                        </svg>
+                        <div style={{marginTop:"-80px"}}>
+                            <svg width="192" height="141" viewBox="0 0 192 141" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M94.0558 0H94.8184V11.0743H98.1902V22.4376L101.399 26.4407V33.4594H108.925V45.3145H110.966V50.1559H114.92V42.3487L117.877 37.692V33.4594H119.292V32.152H128.507V33.4594H129.921V44.7039H133.057V26.4091H134.471V25.1017H143.686V26.4091H145.101V58.1795H147.981V33.4594H149.396V32.152H158.61V33.4594H160.025V45.3145H163.997V19.8163H169.162V14.8706H174.329V9.46874H179.495V34.8811H188.196L187.909 52.4366H192V141H0V50.1266L12.044 37.692V46.9661L21.0269 37.692V43.803H26.2709V54.1691H34.7662V40.8977L43.2613 48.2334V58.7747H44.0181L43.6274 34.8811H44.6937V32.3259H45.484L46.1159 16.8736L46.7481 32.3259H50.8567V34.8811H54.9117L54.7658 43.803H58.2698V65.3057H62.4979V60.037H65.3634V32.9252L71.4674 21.3699L77.5718 32.9252V40.8977H78.8216L83.9235 37.692V40.8977H86.2558V54.1691H90.6843V11.0743H94.0558V0Z" fill="#FFE56B"/>
+                            </svg>
+                            <svg width="183" height="141" viewBox="0 0 183 141" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M121.489 0V11.0743H117.134V54.1691H111.414V40.8977H108.401V37.692L101.811 40.8977H100.197V32.9252L92.3121 21.3699L84.4277 32.9252V60.037H80.7265V65.3057H75.2652V43.803H70.7391L70.9276 34.8811H65.6899V32.3259H60.383L59.5663 16.8736L58.7501 32.3259H57.7293V34.8811H56.3521L56.8567 58.7747H55.8791V48.2334L44.9064 40.8977V54.1691H33.9332V43.803H27.1598V37.692L15.5569 46.9661V37.692L0 50.1266V141H11.6025H15.5569H26.6654H27.1598H33.9332H44.9064H55.8791H58.1533H67.997H69.126H74.6305H75.2652H84.4277H90.3997H100.197H111.414H117.134H126.829H130.974H140.695H143.331H152.258H157.119H164.971H167.815H171.865H178.758H180.528H187.422H191.142H194.316H206.699H211.829H218.501H225.175H230.312H231.848H239.301H241.285H248V52.4366H242.716L243.086 34.8811H231.848V9.46874H225.175V14.8706H218.501V19.8163H211.829V45.3145H206.699V33.4594H204.872V32.152H192.969V33.4594H191.142V58.1795H187.422V26.4091H185.594V25.1017H173.692V26.4091H171.865V44.7039H167.815V33.4594H165.988V32.152H154.086V33.4594H152.258V37.692L148.439 42.3487V50.1559H143.331V45.3145H140.695V33.4594H130.974V26.4407L126.829 22.4376V11.0743H122.474V0H121.489Z" fill="#FFBC00"/>
+                            </svg>
+                        </div>
                     </div>
-                </div>
-                <h1 className="">Make Money. Earn Respect. Secure Your Future.</h1>
-                <p>Apply now to become bhejde driver. Start earning in 24 hours!</p>
+                    <h1 className="">Make Money. Earn Respect. Secure Your Future.</h1>
+                    <p>Apply now to become bhejde driver. Start earning in 24 hours!</p> */}
                 </div>
                 <div className="col-md-5">
                     {isRegistered ? <div className="text-center my-3">
@@ -204,7 +251,7 @@ export default function Driver() {
                         <div className="display-6">Congratulations !</div>
                         <div>You are now registered and verification is in progress</div>
                     </div>:<>
-                        <form onSubmit={handleSubmit(onSubmit)} className="my-4 w-100">
+                        <form onSubmit={handleSubmit(onSubmit)} className="w-100" style={{margin:"130px 0"}}>
                             <div className="display-6">Register your vehicle</div>
                             {/* <small>Register your vehicle and become bhejde driver.</small> */}
                             {/* <small> Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content.</small> */}

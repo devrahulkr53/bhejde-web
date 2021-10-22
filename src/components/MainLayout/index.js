@@ -3,14 +3,16 @@ import { withRouter } from 'react-router'
 import MainFooter from './MainFooter'
 import MainNavbar from './MainNavbar'
 import ScrollToTop from './ScrollToTop'
+// import { Helmet } from "react-helmet";
  
 const MainLayout = (props) => {
     return (
         <React.Fragment>
-            <ScrollToTop />
+            <ScrollToTop />  
             <MainNavbar />
                 {props.children}
-            <MainFooter />
+            <MainFooter /> 
+
         </React.Fragment>
     )
 }
