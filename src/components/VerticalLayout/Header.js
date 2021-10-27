@@ -149,23 +149,23 @@ const Header = (props) => {
             </div>
             <div>
               <div className="navbar-brand-box">
-                <Link to="/" className="logo logo-dark">
+                <a href="/" className="logo logo-dark">
                   <span className="logo-sm">
-                    <img src={logoSm} alt="" height="50" />
+                    <img src={logoSm} alt="" width="50px" />
                   </span>
                   <span className="logo-lg">
-                    <img src={logoDark} alt="" height="50" />
+                    <img src={logoDark} alt="" width="50px" />
                   </span>
-                </Link>
+                </a>
 
-                <Link to="/" className="logo logo-light">
+                <a href="/" className="logo logo-light">
                   <span className="logo-sm">
-                    <img src={logoSm} alt="" height="50" />
+                    <img src={logoSm} alt="" width="50px" />
                   </span>
                   <span className="logo-lg">
-                    <img src={logoLight} alt="" height="50" />
+                    <img src={logoLight} alt="" width="50px" />
                   </span>
-                </Link>
+                </a>
               </div>
               <button
               type="button"

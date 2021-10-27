@@ -49,282 +49,56 @@ export default class ContactUs extends Component {
                         </div>
                     </div>
                     <div className="tab-content">
-                        <div className="tab-pane fadeInUp animated" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
-                        <div className="row">
-                            <div className="col-lg-6">
-                            <div className="outer-box">
-                                <h4><span className="flaticon-cursor" />Boat House, 152/21 City Road, <br /> Hoxton, N1 6NG, UK.</h4>
-                                <div className="row">
-                                <div className="col-md-6">
-                                    <div className="wrapper-box">
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-calling" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
-                                        </div>
-                                    </div>
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-mail" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@transida.com</a></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="icon-box">
-                                    <div className="icon"><span className="flaticon-mail" /></div>
-                                    <div className="text-area">
-                                        <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
-                                        <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
-                                    </div>                                    
-                                    </div>
-                                </div>
-                                </div>
-                            </div>                            
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="sec-title">
-                                <div className="sub-title">Get a Quote</div>
-                                <h2>Start Your Shipping</h2>
-                            </div>
-                            <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
-                            <div className="link">
-                                <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        
                         <div className="tab-pane fadeInUp animated active" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
-                        <div className="row">
-                            <div className="col-lg-6">
-                            <div className="outer-box">
-                                <h4><span className="flaticon-cursor" />Boat House, 152/21 City Road, <br /> Hoxton, N1 6NG, UK.</h4>
-                                <div className="row">
-                                <div className="col-md-6">
-                                    <div className="wrapper-box">
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-calling" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
+                            <div className="row">
+                                <div className="col-lg-6">
+                                <div className="outer-box">
+                                    <h4><span className="flaticon-cursor" />Main road near Shiv mandir <br /> Manoharpur, West Sighbhum, Jharkhand.</h4>
+                                    <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="wrapper-box">
+                                        <div className="icon-box">
+                                            <div className="icon"><span className="flaticon-calling" /></div>
+                                            <div className="text-area">
+                                            <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
+                                            </div>
+                                        </div>
+                                        <div className="icon-box">
+                                            <div className="icon"><span className="flaticon-mail" /></div>
+                                            <div className="text-area">
+                                            <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@bhejde.com</a></div>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
-                                    <div className="icon-box">
+                                    <div className="col-md-6">
+                                        <div className="icon-box">
                                         <div className="icon"><span className="flaticon-mail" /></div>
                                         <div className="text-area">
-                                        <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@transida.com</a></div>
+                                            <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
+                                            <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
+                                        </div>                                    
                                         </div>
                                     </div>
                                     </div>
+                                </div>                            
                                 </div>
-                                <div className="col-md-6">
-                                    <div className="icon-box">
-                                    <div className="icon"><span className="flaticon-mail" /></div>
-                                    <div className="text-area">
-                                        <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
-                                        <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
-                                    </div>                                    
-                                    </div>
+                                <div className="col-lg-6">
+                                <div className="sec-title">
+                                    <div className="sub-title">Get a Quote</div>
+                                    <h2>Start Your Shipping</h2>
+                                </div>
+                                <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
+                                <div className="link">
+                                    <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
                                 </div>
                                 </div>
-                            </div>                            
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="sec-title">
-                                <div className="sub-title">Get a Quote</div>
-                                <h2>Start Your Shipping</h2>
-                            </div>
-                            <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
-                            <div className="link">
-                                <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
-                            </div>
                             </div>
                         </div>
-                        </div>
-                        <div className="tab-pane fadeInUp animated" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
-                        <div className="row">
-                            <div className="col-lg-6">
-                            <div className="outer-box">
-                                <h4><span className="flaticon-cursor" />Boat House, 152/21 City Road, <br /> Hoxton, N1 6NG, UK.</h4>
-                                <div className="row">
-                                <div className="col-md-6">
-                                    <div className="wrapper-box">
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-calling" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
-                                        </div>
-                                    </div>
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-mail" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@transida.com</a></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="icon-box">
-                                    <div className="icon"><span className="flaticon-mail" /></div>
-                                    <div className="text-area">
-                                        <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
-                                        <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
-                                    </div>                                    
-                                    </div>
-                                </div>
-                                </div>
-                            </div>                            
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="sec-title">
-                                <div className="sub-title">Get a Quote</div>
-                                <h2>Start Your Shipping</h2>
-                            </div>
-                            <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
-                            <div className="link">
-                                <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="tab-pane fadeInUp animated" id="tab-four" role="tabpanel" aria-labelledby="tab-four">
-                        <div className="row">
-                            <div className="col-lg-6">
-                            <div className="outer-box">
-                                <h4><span className="flaticon-cursor" />Boat House, 152/21 City Road, <br /> Hoxton, N1 6NG, UK.</h4>
-                                <div className="row">
-                                <div className="col-md-6">
-                                    <div className="wrapper-box">
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-calling" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
-                                        </div>
-                                    </div>
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-mail" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@transida.com</a></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="icon-box">
-                                    <div className="icon"><span className="flaticon-mail" /></div>
-                                    <div className="text-area">
-                                        <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
-                                        <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
-                                    </div>                                    
-                                    </div>
-                                </div>
-                                </div>
-                            </div>                            
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="sec-title">
-                                <div className="sub-title">Get a Quote</div>
-                                <h2>Start Your Shipping</h2>
-                            </div>
-                            <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
-                            <div className="link">
-                                <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="tab-pane fadeInUp animated" id="tab-five" role="tabpanel" aria-labelledby="tab-one">
-                        <div className="row">
-                            <div className="col-lg-6">
-                            <div className="outer-box">
-                                <h4><span className="flaticon-cursor" />Boat House, 152/21 City Road, <br /> Hoxton, N1 6NG, UK.</h4>
-                                <div className="row">
-                                <div className="col-md-6">
-                                    <div className="wrapper-box">
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-calling" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
-                                        </div>
-                                    </div>
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-mail" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@transida.com</a></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="icon-box">
-                                    <div className="icon"><span className="flaticon-mail" /></div>
-                                    <div className="text-area">
-                                        <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
-                                        <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
-                                    </div>                                    
-                                    </div>
-                                </div>
-                                </div>
-                            </div>                            
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="sec-title">
-                                <div className="sub-title">Get a Quote</div>
-                                <h2>Start Your Shipping</h2>
-                            </div>
-                            <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
-                            <div className="link">
-                                <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div className="tab-pane fadeInUp animated" id="tab-six" role="tabpanel" aria-labelledby="tab-two">
-                        <div className="row">
-                            <div className="col-lg-6">
-                            <div className="outer-box">
-                                <h4><span className="flaticon-cursor" />Boat House, 152/21 City Road, <br /> Hoxton, N1 6NG, UK.</h4>
-                                <div className="row">
-                                <div className="col-md-6">
-                                    <div className="wrapper-box">
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-calling" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
-                                        </div>
-                                    </div>
-                                    <div className="icon-box">
-                                        <div className="icon"><span className="flaticon-mail" /></div>
-                                        <div className="text-area">
-                                        <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@transida.com</a></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-6">
-                                    <div className="icon-box">
-                                    <div className="icon"><span className="flaticon-mail" /></div>
-                                    <div className="text-area">
-                                        <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
-                                        <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
-                                    </div>                                    
-                                    </div>
-                                </div>
-                                </div>
-                            </div>                            
-                            </div>
-                            <div className="col-lg-6">
-                            <div className="sec-title">
-                                <div className="sub-title">Get a Quote</div>
-                                <h2>Start Your Shipping</h2>
-                            </div>
-                            <div className="text">Indignation and dislike men who are so beguiled &amp; demoralized by <br /> the charms of pleasure of the moment.</div>
-                            <div className="link">
-                                <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get A Quote</span></a>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
+                        
+                        
+                         
                     </div>
                     </div>
                 </section>

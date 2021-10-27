@@ -2127,7 +2127,7 @@ img {
 .banner-section .content-box {
     position: relative;
     padding: 160px 15px 50px;
-    min-height: 820px;
+    min-height: 612px;
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -4675,7 +4675,7 @@ img {
 .banner-section.style-two .content-box .inner:before {
     position: absolute;
     left: 15px;
-    top: 70px;
+    top: 15px;
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
@@ -4684,9 +4684,9 @@ img {
 }
 
 .banner-section.style-two .content-box h1 {
-    font-size: 80px;
+    font-size: 50px;
     text-transform: capitalize;
-    line-height: 80px;
+    line-height: 55px;
     padding-bottom: 0;
     margin-bottom: 20px;
 }

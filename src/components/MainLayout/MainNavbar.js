@@ -10,37 +10,20 @@ export default function MainNavbar() {
         return (
             <header className="main-header header-style-two">
               {/* Header Top */}
-              <div className="header-top">
+              <div className="header-top d-none d-md-block">
                 <div className="auto-container">
                   <div className="inner-container">
                     <div className="left-column">
                       <ul className="social-icon">
-                        <li><a href="#"><i className="fab fa-facebook-f" /></a></li>
-                        <li><a href="#"><i className="fab fa-twitter" /></a></li>
+                        <li><a href="https://www.facebook.com/Bhej-De-India-Move-with-us-106658531761194/"><i className="fab fa-facebook-f" /></a></li>
+                        <li><a href="https://instagram.com/bhejdeindia?utm_medium=copy_link"><i className="fab fa-instagram" /></a></li>
                         <li><a href="#"><i className="fab fa-google-plus-g" /></a></li>
                         <li><a href="#"><i className="fab fa-youtube" /></a></li>
-                      </ul>
-                      {/* <div className="search-box">
-                        <form className="search-form">
-                          <input type="search" placeholder="Search..." />
-                          <button type="submit"><i className="far fa-search" /></button>
-                        </form>
-                      </div> */}
+                      </ul> 
                     </div>
-                    <div className="right-column">
-                      {/* <div className="location">
-                        <span className="flaticon-cursor" />
-                        <form action="#" className="location-switcher">
-                          <select className="selectpicker">
-                            <option value={1}>Melbourne</option>
-                            <option value={2}>New York</option>
-                            <option value={3}>Chicago</option>
-                            <option value={4}>Boston</option>
-                          </select>
-                        </form>
-                      </div> */}
+                    <div className="right-column"> 
                       <div className="phone-number"><i className="flaticon-calling" /><a href="tel:(+61)32456789" />(+61) 324 56 789</div>
-                      <div className="mail-address"><i className="flaticon-mail" />(<a href="tel:(+61)32456789790">info@transida.com</a></div>
+                      <div className="mail-address"><i className="flaticon-mail" /><a href="tel:(+61)32456789790">info@bhejde.com</a></div>
                     </div>
                   </div>
                 </div>
@@ -51,7 +34,17 @@ export default function MainNavbar() {
                   <div className="inner-container">
                     {/*Logo*/}
                     <div className="logo-box">
-                      <div className="logo"><a href="index.html"><img src="assets/images/logo-v2.png"  /></a></div>
+                      <div className="logo">
+                        <a href="/" className="d-flex align-items-center">
+                          <img src="/logoIco2.png" width="80px"  /> 
+                          <div className="p-2">
+                            <h3 className="text-white">BhejDe India</h3>
+                            <h6 className="text-secondary">Move with us</h6>
+
+                          </div>
+                          {/* <img src="assets/images/logo-v2.png"  /> */}
+                        </a>
+                      </div>
                     </div>
                     <div className="header-left-option">
                       <div className="option-box">
@@ -104,10 +97,10 @@ export default function MainNavbar() {
                       </div>
                       <div className="navbar-right-info">
                         <div className="sign-in">
-                          <button className="btn btn-outline-warning">Packers & Movers</button>
+                          <button className="p-2 px-4 border border-warning text-dark rounded">Packers & Movers</button>
                         </div>
                         <div className="language">
-                          <Link to="/driver"><button className="btn btn-warning">Become a Driver</button></Link>
+                          <Link to="/driver"><button style={{backgroundColor:"darkred"}} className="p-3 px-5 rounded text-white">Become a Driver</button></Link>
                         </div>
                       </div>
                     </div>                        

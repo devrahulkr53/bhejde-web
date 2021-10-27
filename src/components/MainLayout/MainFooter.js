@@ -8,53 +8,114 @@ export default function MainFooter() {
     const endDate = new Date().getFullYear() > startDate ? '- '+new Date().getFullYear() : ''
 
     return (
-        <div className="bg-dark text-white mt-5">
-            <div className="container">
-                <div className="row py-5">
-                    <div className="col-md-12">
-                        <div className="row my-2">
-                            <div className="col-md-3">
-                                <h5 className="text-secondary">Social Links</h5>
+        <React.Fragment>
+        <footer className="main-footer">
+            <div className="upper-box">
+                <div className="auto-container">
+                <div className="row">
+                    <div className="col-lg-6">
+                    <div className="widget contact-widget style-two">
+                        <h4>Do You Have Any Question? Please <br /> Contact Our Team</h4>
+                        <div className="row">
+                        <div className="col-md-6">
+                            <div className="wrapper-box">
+                            <div className="icon-box">
+                                <div className="icon"><span className="flaticon-calling" /></div>
+                                <div className="text"><strong>Phone</strong><a href="tel:(+61)3245689790">(+61)32456789</a></div>
                             </div>
-                            <div className="col-md-9">
-                                <Link to=""><img src="./social/fb.svg" alt="Facebook" className="me-3" /></Link>
-                                <Link to=""><img src="./social/insta.svg" alt="Instagram" className="me-3" /></Link>
-                                <Link to=""><img src="./social/youtube.svg" alt="Youtube" className="me-3" /></Link>
-                                <Link to=""><img src="./social/twitter.svg" alt="Twitter" className="me-3" /></Link>
+                            <div className="icon-box">
+                                <div className="icon"><span className="flaticon-mail" /></div>
+                                <div className="text"><strong>Email</strong><a href="tel:(+61)32456789790">info@bhejde.com</a></div>
                             </div>
-                        </div>
-                        <div className="row my-2">
-                            <div className="col-md-3">
-                                <h5 className="text-secondary">Discover Bhejde</h5>
-                            </div>
-                            <div className="col-md-9 d-flex align-items-center">
-                                <Link className="text-decoration-none pe-3" to="/about">About Bhejde</Link>
-                                <Link className="text-decoration-none pe-3" to="/contactus">Contact Us</Link>
-                                <Link className="text-decoration-none pe-3" to="/dashboard">Admin</Link>
-                                <div className="ms-auto">
-                                    <Link className="text-decoration-none ps-3" to="/driver">Become a Driver</Link>
-                                    <a className="text-decoration-none ps-3" href="/">Dowload app</a>
-                                </div>
+                            <ul className="social-icon">
+                                <li><a href="https://www.facebook.com/Bhej-De-India-Move-with-us-106658531761194/"><i className="fab fa-facebook-f" /></a></li>
+                                <li><a href="https://instagram.com/bhejdeindia?utm_medium=copy_link"><i className="fab fa-instagram" /></a></li>
+                                <li><a href="#"><i className="fab fa-google-plus-g" /></a></li>
+                                <li><a href="#"><i className="fab fa-youtube" /></a></li>
+                            </ul>
                             </div>
                         </div>
-                        <div className="row my-2">
-                            <div className="col-md-3">
-                                <a href="/"><img src="/logo.png" alt="Logo" width="120px" /></a>
+                        <div className="col-md-6">
+                            <div className="icon-box">
+                            <div className="icon"><span className="flaticon-mail" /></div>
+                            <div>
+                                <div className="text"><strong>Mon - Friday</strong>08.00 am to 9.00pm</div>
+                                <div className="text"><strong>Saturday</strong>10.00 am to 4.00pm</div>
+                                <div className="text"><span>Sunday-Closed</span></div>
+                            </div>                                    
                             </div>
-                            <div className="col-md-9 d-flex align-items-center">
-                                <div className="ms-auto text-end">
-                                    <div>
-                                        <Link className="text-decoration-none ps-3" to="/faq">FAQ</Link>
-                                        <Link className="text-decoration-none ps-3" to="/terms">Terms & Conditions</Link>
-                                        <Link className="text-decoration-none ps-3" to="/privacy-policy">Privacy Policy</Link>
-                                    </div>
-                                    <p className="">Copyright © {startDate} {endDate} Bhejde Pvt. Ltd. All rights reserved.</p>
-                                </div>
-                            </div>
+                        </div>
                         </div>
                     </div>
+                    </div>
+                    <div className="col-lg-6">
+                    <div className="row">
+                        <div className="col-md-6">
+                        <div className="widget links-widget">
+                            <h4 className="widget_title">Useful Links</h4>
+                            <div className="widget-content">
+                            <ul className="list">
+                                <li><Link to="/about">Our Team</Link></li>
+                                <li><Link to="#">Press Releases</Link></li>
+                                <li><Link to="/driver">Join Our Team</Link></li>
+                                {/* <li><Link to="#">Packers & movers</Link></li> */}
+                                <li><Link to="/dashboard">Admin</Link></li>
+                            </ul>
+                            </div>
+                        </div>
+                        </div>
+                        <div className="col-md-6">
+                        <div className="widget instagram-widget">
+                            <h4 className="widget_title">Our Gallery</h4>
+                            <div className="wrapper-box">
+                            <div className="image">
+                                <img src="assets/images/gallery/gallery-1.jpg" alt />
+                                <div className="overlay-link"><a href="assets/images/gallery/gallery-1.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                            </div>
+                            <div className="image">
+                                <img src="assets/images/gallery/gallery-2.jpg" alt />
+                                <div className="overlay-link"><a href="assets/images/gallery/gallery-2.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                            </div>
+                            <div className="image">
+                                <img src="assets/images/gallery/gallery-3.jpg" alt />
+                                <div className="overlay-link"><a href="assets/images/gallery/gallery-3.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                            </div>
+                            <div className="image">
+                                <img src="assets/images/gallery/gallery-4.jpg" alt />
+                                <div className="overlay-link"><a href="assets/images/gallery/gallery-4.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                            </div>
+                            <div className="image">
+                                <img src="assets/images/gallery/gallery-5.jpg" alt />
+                                <div className="overlay-link"><a href="assets/images/gallery/gallery-5.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                            </div>
+                            <div className="image">
+                                <img src="assets/images/gallery/gallery-6.jpg" alt />
+                                <div className="overlay-link"><a href="assets/images/gallery/gallery-6.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                            </div>
+                            </div>{/* /.gallery-wrapper */}
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
+                </div> 
+            </div>               
+        </footer>
+        
+        {/*End Main Footer*/}
+        <div className="footer-bottom">
+            <div className="auto-container">
+                <div className="row m-0 align-items-center justify-content-between">
+                <div className="copyright-text">Copyright © {startDate} {endDate} <a href="/"> BhejDe India.</a> All Rights Reserved.</div>
+                <ul className="menu">
+                    <li><Link to="/faq">  FAQ</Link></li>
+                    <li><Link to="/terms">Terms &amp; Conditions</Link></li>
+                    <li><Link to="/privacy-policy">Privacy Policy </Link></li>
+                </ul>
+                </div>            
             </div>
         </div>
+    </React.Fragment>
+
     )
 }

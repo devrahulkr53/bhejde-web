@@ -8,7 +8,7 @@ const Breadcrumb = props => {
     <Row>
       <Col className="col-12">
         <div className="page-title-box d-flex align-items-start align-items-center justify-content-between">
-          <h4 className="page-title mb-0 font-size-18">{props.breadcrumbItem}</h4>
+          <h3 className="text-white mt-2 mb-0 font-size-18">{props.breadcrumbItem}</h3>
 
           <div className="page-title-right">
             <ol className="breadcrumb m-0">
