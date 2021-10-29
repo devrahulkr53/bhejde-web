@@ -115,8 +115,10 @@ import Privacy from "../pages/Privacy"
 import Rides from "../pages/Rides"
 import Vehicles from "../pages/Vehicles"
 import Drivers from "../pages/Drivers"
+import PackersMovers from "../pages/PackersMovers"
 import Users from "../pages/Users"
 import ContactUs from "../pages/ContactUs"
+import Faq from "../pages/Faq"
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard2 },
@@ -238,8 +240,10 @@ const mainRoutes = [
   { path: "/", exact: true, component: () => <Redirect to="/homepage" /> },
   { path: "/homepage", component: Home },
   { path: "/driver", component: Driver },
+  { path: "/packers-movers", component: PackersMovers },
   { path: "/about", component: About },
   { path: "/contactus", component: ContactUs },
+  { path: "/faq", component: Faq },
   { path: "/terms", component: Terms },
   { path: "/privacy-policy", component: Privacy },
   

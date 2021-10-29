@@ -1,4 +1,5 @@
 import React from 'react' 
+import { Link } from 'react-router-dom'
 
 export default function Home() {
 
@@ -152,8 +153,8 @@ export default function Home() {
                         </div>
                         
                         <div class="form-group">
-                            <button type="submit" class="theme-btn btn-style-one"><span><i class="flaticon-up-arrow"></i>Book Now</span></button>
-                            <button type="button" class="bg-danger text-white py-3 px-5 ms-1">Packers & Movers</button>
+                            <button type="button" class="theme-btn btn-style-one"><span><i class="flaticon-up-arrow"></i>Book Now</span></button>
+                            <Link to="/packers-movers"><button type="button" class="bg-danger text-white py-3 px-5 ms-auto">Packers & Movers</button></Link>
                         </div>            
                     </form>
                 </div>

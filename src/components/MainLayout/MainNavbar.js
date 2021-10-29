@@ -97,7 +97,7 @@ export default function MainNavbar() {
                       </div>
                       <div className="navbar-right-info">
                         <div className="sign-in">
-                          <button className="p-2 px-4 border border-warning text-dark rounded">Packers & Movers</button>
+                          <Link to="/packers-movers"><button className="p-2 px-4 border border-warning text-dark rounded">Packers & Movers</button></Link>
                         </div>
                         <div className="language">
                           <Link to="/driver"><button style={{backgroundColor:"darkred"}} className="p-3 px-5 rounded text-white">Become a Driver</button></Link>
