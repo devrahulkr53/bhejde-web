@@ -15,7 +15,7 @@ const metadata = {
     contentType: 'image/jpeg'
 };
 
-export default function Driver() {
+export default function RegisterDriver() {
     // Create a root reference
     // const storage = getStorage(app);
     var db = firebase.firestore();

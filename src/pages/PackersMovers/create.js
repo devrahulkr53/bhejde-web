@@ -7,7 +7,7 @@ import { Uploader } from 'rsuite';
 import { useDispatch } from 'react-redux';
 
 
-export default function PackersMovers() {
+export default function RegisterPackersMovers() {
 
     var db = firebase.firestore();
     const storage = firebase.storage().ref();
@@ -81,7 +81,7 @@ export default function PackersMovers() {
     return (
         <div className="container-fluid widget my-5">
             <div className="d-flex align-items-center">
-                <div className="col-md-8">
+                <div className="col-md-8 d-none d-md-block">
                     <section className="pricing-section p-0">
                         <div className="auto-container">
                             {/* <div className="sec-title text-center">

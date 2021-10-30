@@ -152,10 +152,14 @@ export default function Home() {
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <button type="button" class="theme-btn btn-style-one"><span><i class="flaticon-up-arrow"></i>Book Now</span></button>
-                            <Link to="/packers-movers"><button type="button" class="bg-danger text-white py-3 px-5 ms-auto">Packers & Movers</button></Link>
+                        <div className="form-group d-none d-md-block">
+                            <button type="button" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow"></i>Book Now</span></button>
+                            <Link to="/packers-movers"><button type="button" className="bg-danger text-white py-3 px-5 ms-2">Packers And Movers</button></Link>
                         </div>            
+                        <div className="d-md-none">
+                            <button type="button" className="btn btn-primary"><span><i className="flaticon-up-arrow"></i>Book Now</span></button>
+                            <Link to="/packers-movers"><button type="button" className="btn btn-danger ms-1">Packers And Movers</button></Link>
+                        </div>
                     </form>
                 </div>
                 <div className="col-md-5 py-4">

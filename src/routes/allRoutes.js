@@ -108,14 +108,15 @@ import LockScreen from "../pages/AuthenticationInner/auth-lock-screen"
 import UserProfile from "../pages/Authentication/user-profile"
 
 import Home from "../pages/Home"
-import Driver from "../pages/Driver"
+import RegisterDriver from "../pages/RegisterDriver"
 import About from "../pages/About/index"
 import Terms from "../pages/Terms"
 import Privacy from "../pages/Privacy"
 import Rides from "../pages/Rides"
 import Vehicles from "../pages/Vehicles"
 import Drivers from "../pages/Drivers"
-import PackersMovers from "../pages/PackersMovers"
+import RegisterPackersMovers from "../pages/PackersMovers/create"
+import ShowPackersMovers from "../pages/PackersMovers/show"
 import Users from "../pages/Users"
 import ContactUs from "../pages/ContactUs"
 import Faq from "../pages/Faq"
@@ -239,8 +240,9 @@ const mainRoutes = [
   
   { path: "/", exact: true, component: () => <Redirect to="/homepage" /> },
   { path: "/homepage", component: Home },
-  { path: "/driver", component: Driver },
-  { path: "/packers-movers", component: PackersMovers },
+  { path: "/driver/register", component: RegisterDriver },
+  { path: "/packers-movers", component: ShowPackersMovers },
+  { path: "/packers-movers/register", component: RegisterPackersMovers },
   { path: "/about", component: About },
   { path: "/contactus", component: ContactUs },
   { path: "/faq", component: Faq },
