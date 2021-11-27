@@ -16,8 +16,8 @@ export default function ShowPackersMovers() {
     const fetchPackers = () => {
         setLoading(true)
         db.collection("packers-movers")
-        .where("businessName",">=",search)
-        .where("businessName","<=",search+ '\uf8ff')
+        .where("cityLocation",">=",search)
+        .where("cityLocation","<=",search+ '\uf8ff')
         // .where("name","==","Rahul")
         .get().then(querySnapshot=>{
             var arr = []

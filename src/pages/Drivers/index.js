@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react" 
 import { connect, useDispatch } from "react-redux" 
+import firebase from 'firebase';
+
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb" 
 //css
@@ -8,6 +10,7 @@ import "@fullcalendar/bootstrap/main.css"
 import {
   TabContent,
   TabPane,
+  Table,
   Collapse,
   NavLink,
   NavItem,
@@ -25,8 +28,36 @@ import classnames from "classnames"
 
 const Drivers = props => {
  
-  const [activeTabJustify, setactiveTabJustify] = useState("5")
- 
+  var db = firebase.firestore();
+  const [isLoading,setLoading] = React.useState(false)
+  const [drivers,setDrivers] = React.useState([])
+  const [activeTabJustify, setactiveTabJustify] = useState(false)
+  
+
+  useEffect(() => {
+    fetchDrivers();
+
+  }, [])
+
+
+  const fetchDrivers = () => {
+    setLoading(true)
+    db.collection("users")
+    .where("role","==",3)
+    .get().then(querySnapshot=>{
+        var arr = []
+        querySnapshot.forEach(doc=>{
+            console.log(doc.data())
+            arr.push(doc.data())
+        })
+        setDrivers(arr)
+        setLoading(false)
+    }).catch(err=>{
+        console.log(err)
+    })
+
+  }
+  
   function toggleCustomJustified(tab) {
     if (activeTabJustify !== tab) {
       setactiveTabJustify(tab)
@@ -51,10 +82,10 @@ const Drivers = props => {
                     <NavLink
                       style={{ cursor: "pointer" }}
                       className={classnames({
-                        active: activeTabJustify === "5",
+                        active: activeTabJustify === true,
                       })}
                       onClick={() => {
-                        toggleCustomJustified("5")
+                        toggleCustomJustified(true)
                       }}
                     >
                       <span className="d-block d-sm-none"><i className="fas fa-home"></i></span>
@@ -65,17 +96,17 @@ const Drivers = props => {
                     <NavLink
                       style={{ cursor: "pointer" }}
                       className={classnames({
-                        active: activeTabJustify === "6",
+                        active: activeTabJustify === false,
                       })}
                       onClick={() => {
-                        toggleCustomJustified("6")
+                        toggleCustomJustified(false)
                       }}
                     >
                       <span className="d-block d-sm-none"><i className="far fa-user"></i></span>
                       <span className="d-none d-sm-block">Pending</span>
                     </NavLink>
                   </NavItem>
-                  <NavItem>
+                  {/* <NavItem>
                     <NavLink
                       style={{ cursor: "pointer" }}
                       className={classnames({
@@ -88,7 +119,7 @@ const Drivers = props => {
                       <span className="d-block d-sm-none"><i className="far fa-envelope"></i></span>
                       <span className="d-none d-sm-block">Disabled</span>
                     </NavLink>
-                  </NavItem>
+                  </NavItem> */}
                   {/* <NavItem>
                     <NavLink
                       style={{ cursor: "pointer" }}
@@ -104,54 +135,34 @@ const Drivers = props => {
                     </NavLink>
                   </NavItem> */}
                 </Nav>
-
-                <TabContent activeTab={activeTabJustify}>
-                  <TabPane tabId="5" className="p-3">
-                    <p className="mb-0">
-                      Raw denim you probably haven't heard of them jean shorts Austin.
-                      Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
-                      cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-                      butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi,
-                      qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-                      iphone. Seitan aliquip quis cardigan american apparel, butcher
-                      voluptate nisi qui.
-                                            </p>
-                  </TabPane>
-                  <TabPane tabId="6" className="p-3">
-                    <p className="mb-0">
-                      Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-                      single-origin coffee squid. Exercitation +1 labore velit, blog
-                      sartorial PBR leggings next level wes anderson artisan four loko
-                      farm-to-table craft beer twee. Qui photo booth letterpress,
-                      commodo enim craft beer mlkshk aliquip jean shorts ullamco ad
-                      vinyl cillum PBR. Homo nostrud organic, assumenda labore
-                      aesthetic magna delectus.
-                                            </p>
-                  </TabPane>
-                  <TabPane tabId="7" className="p-3">
-                    <p className="mb-0">
-                      Etsy mixtape wayfarers, ethical wes anderson tofu before they
-                      sold out mcsweeney's organic lomo retro fanny pack lo-fi
-                      farm-to-table readymade. Messenger bag gentrify pitchfork
-                      tattooed craft beer, iphone skateboard locavore carles etsy
-                      salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                      Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh
-                      mi whatever gluten-free carles.
-                                            </p>
-                  </TabPane>
-
-                  <TabPane tabId="8" className="p-3">
-                    <p className="mb-0">
-                      Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
-                      art party before they sold out master cleanse gluten-free squid
-                      scenester freegan cosby sweater. Fanny pack portland seitan DIY,
-                      art party locavore wolf cliche high life echo park Austin. Cred
-                      vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-                      farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral,
-                      mustache readymade keffiyeh craft.
-                                            </p>
-                  </TabPane>
-                </TabContent>
+                {drivers.filter(e=>e.verified === activeTabJustify).length > 0 ? <Table className="table mb-0">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Name</th>
+                      {/* <th>Vehicle Type</th> */}
+                      <th>Phone Number</th>
+                      <th>Document</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {drivers.filter(e=>e.verified === activeTabJustify).map((val,key)=>(
+                      <tr key={key}>
+                        <th scope="row">{key+1}</th>
+                        <td>{val.name}</td>
+                        {/* <td>{val.vehicleType}</td> */}
+                        <td> {val.countryCode} {val.phone}</td>
+                        <td>
+                          <a href={val.aadharCard} target="_blank"><img src={val.aadharCard} alt="Aadhar Card" width="40px" /></a>
+                          <a href={val.vehicleInsurance} target="_blank"><img src={val.vehicleInsurance} alt="Vehicle Insurance" width="40px" /></a>
+                          <a href={val.vehicleRC} target="_blank"><img src={val.vehicleRC} alt="Vehicle Insurance" width="40px" /></a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>:<></>}
+                
+                 
               </CardBody>
             </Card>
           

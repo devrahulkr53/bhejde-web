@@ -69,28 +69,28 @@ export default function MainFooter() {
                             <h4 className="widget_title">Our Gallery</h4>
                             <div className="wrapper-box">
                             <div className="image">
-                                <img src="assets/images/gallery/gallery-1.jpg"  />
-                                <div className="overlay-link"><a href="assets/images/gallery/gallery-1.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                                <img src="/assets/images/gallery/gallery-1.jpg"  />
+                                <div className="overlay-link"><a href="/assets/images/gallery/gallery-1.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
                             </div>
                             <div className="image">
-                                <img src="assets/images/gallery/gallery-2.jpg"  />
-                                <div className="overlay-link"><a href="assets/images/gallery/gallery-2.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                                <img src="/assets/images/gallery/gallery-2.jpg"  />
+                                <div className="overlay-link"><a href="/assets/images/gallery/gallery-2.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
                             </div>
                             <div className="image">
-                                <img src="assets/images/gallery/gallery-3.jpg"  />
-                                <div className="overlay-link"><a href="assets/images/gallery/gallery-3.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                                <img src="/assets/images/gallery/gallery-3.jpg"  />
+                                <div className="overlay-link"><a href="/assets/images/gallery/gallery-3.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
                             </div>
                             <div className="image">
-                                <img src="assets/images/gallery/gallery-4.jpg"  />
-                                <div className="overlay-link"><a href="assets/images/gallery/gallery-4.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                                <img src="/assets/images/gallery/gallery-4.jpg"  />
+                                <div className="overlay-link"><a href="/assets/images/gallery/gallery-4.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
                             </div>
                             <div className="image">
-                                <img src="assets/images/gallery/gallery-5.jpg"  />
-                                <div className="overlay-link"><a href="assets/images/gallery/gallery-5.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                                <img src="/assets/images/gallery/gallery-5.jpg"  />
+                                <div className="overlay-link"><a href="/assets/images/gallery/gallery-5.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
                             </div>
                             <div className="image">
-                                <img src="assets/images/gallery/gallery-6.jpg"  />
-                                <div className="overlay-link"><a href="assets/images/gallery/gallery-6.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
+                                <img src="/assets/images/gallery/gallery-6.jpg"  />
+                                <div className="overlay-link"><a href="/assets/images/gallery/gallery-6.jpg" className="lightbox-image" data-fancybox="gallery"><span className="fa fa-plus" /></a></div>
                             </div>
                             </div>{/* /.gallery-wrapper */}
                         </div>

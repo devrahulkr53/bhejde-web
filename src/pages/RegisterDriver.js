@@ -64,7 +64,7 @@ export default function RegisterDriver() {
           }); 
           console.log('dsf')
         const appVerifier = window.recaptchaVerifier;
-        db.collection("users").where("phone","==",data.phone)
+        db.collection("users").where("phone","==",phone)
         .get()
         .then((querySnapshot) => {
             if(querySnapshot.docs.length === 0){
@@ -122,15 +122,15 @@ export default function RegisterDriver() {
     const readyToSubmit = () => {
         var x = {
             name:data.name,
-            phone:data.phone,
+            phone:countryCode+data.phone,
             role:3,
-            aadharCard,vehicleInsurance,vehicleRC,countryCode,
-            uid:data.user.uid,
+            vehicleType:data.vehicleType,
+            aadharCard,driverLicense,vehicleInsurance,vehicleRC,
             token:data.user.refreshToken,
             verified:false
         }
         try{
-            db.collection("users").add(x)
+            db.collection("users").doc(data.user.uid).set(x)
             .then((docRef) => {
                 // dispatch({type:"setAlert",payloads:{type:'success',msg:'You are now registered and verification is in progress'}})
                 setSubmitLoading(null)
@@ -228,14 +228,14 @@ export default function RegisterDriver() {
                                 {/* <small className="text-secondary">Personal Information</small> */}
                                 <div className="input-group my-2">
                                     <input type="text" className={`form-control`} id="name" {...register("name",{required:true})} placeholder="Driver name" />
-                                    {errors.name && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
+                                    {errors.name && <img src="/icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
                                 </div>
                                 <div className="input-group my-2">
                                     <div className="input-group-prepend">
                                         <div className="input-group-text">+91</div>
                                     </div>
                                     <input type="number" className={`form-control`} id="phone" {...register("phone",{required:true,minLength:10,maxLength:10})} placeholder="Phone number" />
-                                    {errors.phone && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
+                                    {errors.phone && <img src="/icons/danger.png" alt="error" width="20px" height="20px" className="my-auto" style={{position:"absolute",right:8,top:8,zIndex:20}} />}
                                 </div>
                                 <select className={`form-select mb-2 ${errors.vehicleType && 'border border-danger'}`} id="vehicleType" {...register("vehicleType",{required:true})}>
                                     <option value="">Select vehicle type</option>
@@ -246,28 +246,28 @@ export default function RegisterDriver() {
                                     {/* <div>Aadhar Card</div> */}
                                     <input type="file" className={`form-control`} id="aadharCard" {...register("aadharCard",{required:true})} placeholder="Aadhar Card" />
                                     <img src="/icons/aadharcard.png" alt="Aadhar Card" width="60px" />
-                                    {errors.aadharCard && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                    {errors.aadharCard && <img src="/icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                                 </label>
                                 <small className="text-secondary">Driver License</small>
                                 <label htmlFor="driverLicense" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
                                     {/* <div>Driver License</div> */}
                                     <input type="file" className={`form-control`} id="driverLicense" {...register("driverLicense",{required:true})} placeholder="Vehicle Registration Number" />
                                     <img src="/icons/driver-license.jpg" alt="" width="60px" className="" /> 
-                                    {errors.driverLicense && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                    {errors.driverLicense && <img src="/icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                                 </label>
                                 <small className="text-secondary">Vehicle Registration Certificate</small>
                                 <label htmlFor="vehicleRC" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
                                     {/* <div>Vehicle Registration Certificate</div> */}
                                     <input type="file" className={`form-control`} id="vehicleRC" {...register("vehicleRC",{required:true})} placeholder="Vehicle Registration Number" />
                                     <img src="/icons/rc.png" alt="" width="60px" className="" /> 
-                                    {errors.vehicleRC && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                    {errors.vehicleRC && <img src="/icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                                 </label>
                                 <small className="text-secondary">Vehicle Insurance</small>
                                 <label htmlFor="vehicleInsurancePaper" className="d-flex align-items-center border border-secondary rounded pe-1 mb-1">
                                     {/* <div>Vehicle Insurance paper</div> */}
                                     <input type="file" className={`form-control`} id="vehicleInsurancePaper" {...register("vehicleInsurancePaper",{required:true})} placeholder="Vehicle Registration Number" />
                                     <img src="/icons/insurance.png" alt="" width="60px" />
-                                    {errors.vehicleInsurancePaper && <img src="./icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
+                                    {errors.vehicleInsurancePaper && <img src="/icons/danger.png" alt="error" width="20px" height="20px" className="ms-auto" />}
                                 </label>
                                 
                                 <div className="text-start my-3">
@@ -277,7 +277,7 @@ export default function RegisterDriver() {
                                 </div>
                             
                             </>:<>
-                                <img src="./icons/otp.png" className="w-50" alt="OTP" />
+                                <img src="/icons/otp.png" className="w-50" alt="OTP" />
                                 <input type="number" id="otp" onChange={e=>setOtp(e.target.value)} className="form-control my-2" placeholder="Enter otp" />
                                 <button type="button" disabled={submitLoading===true} className={`btn px-5 btn-warning`} onClick={verifyOTP}>
                                     {submitLoading === null ? 'Verify OTP':submitLoading === true ? <div className="d-flex align-items-center"><div className="spinner-border text-dark"></div><div className="mx-2">Loading ...</div></div>:'Verified'}
