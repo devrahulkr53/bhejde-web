@@ -25,7 +25,6 @@ const firebaseConfig = {
 const fireBaseBackend = getFirebaseBackend(firebaseConfig)
 
 function* loginUser({ payload: { user, history } }) {
-  
   try {
     if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
       const response = yield call(
@@ -47,13 +46,12 @@ function* loginUser({ payload: { user, history } }) {
         email: user.email,
         password: user.password,
       })
-      
       localStorage.setItem("authUser", JSON.stringify(response))
       yield put(loginSuccess(response))
     }
     history.push("/dashboard")
   } catch (error) {
-    yield put(apiError(error))
+    yield put(apiError(error[1]))
   }
 }
 

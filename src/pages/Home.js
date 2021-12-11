@@ -30,143 +30,145 @@ export default function Home() {
         
         {/* Bnner Section */}
         <section className="banner-section mt-0 style-two">
-        <div className="swiper-container banner-slider">
-            <div className="swiper-wrapper">
-            {/* Slide Item */}
-            <div className="swiper-slide" style={{backgroundImage: 'url(/images/2.jpg'}}>
-                <div className="content-outer">
-                <div className="content-box">
-                    <div className="inner">
-                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
-                    <h1>Live Tracking <br /> for your Shipment.</h1>
-                    <div className="text"><i className="far fa-meh" /> Check your Shipment anytime from anywhere</div>
-                    <div className="link-box">
-                        <a href="service.html" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Track Now</span></a>
+            <div className="swiper-container banner-slider">
+                <div className="swiper-wrapper">
+                {/* Slide Item */}
+                <div className="swiper-slide" style={{backgroundImage: 'url(/images/2.jpg'}}>
+                    <div className="content-outer">
+                    <div className="content-box">
+                        <div className="inner">
+                        <div className="logo"><img src="/logoIco2.png" width="100px"  /></div>
+                        <h1>Live Tracking <br /> for your Shipment.</h1>
+                        <div className="text"><i className="far fa-meh" /> Check your Shipment anytime from anywhere</div>
+                        <div className="link-box">
+                            <a href="service.html" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Track Now</span></a>
+                        </div>
+                        </div>                               
                     </div>
-                    </div>                               
+                    </div>
+                </div>
+                {/* Slide Item */}
+                <div className="swiper-slide" style={{backgroundImage: 'url(/images/1.jpg'}}>
+                    <div className="content-outer">
+                    <div className="content-box">
+                        <div className="inner">
+                        <div className="logo"><img src="/logoIco2.png" width="100px"  /></div>
+                        <h1>Find best suited Packers <br /> & Movers in one click.</h1>
+                        <div className="text"><i className="far fa-meh" /> Compare and Get best competitive Pricing.</div>
+                        <div className="link-box">
+                            <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Packers & Movers</span></a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {/* Slide Item */}
+                <div className="swiper-slide" style={{backgroundImage: 'url(/images/shipment2.jpg'}}>
+                    <div className="content-outer">
+                    <div className="content-box">
+                        <div className="inner">
+                        <div className="logo"><img src="/logoIco2.png" width="100px"  /></div>
+                        <h1>Stop waiting <br /> for your Shipment</h1>
+                        <div className="text"><i className="far fa-meh" /> Fast and One time Delivery</div>
+                        <div className="link-box">
+                            <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get a Quote</span></a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {/* Slide Item */}
+                <div className="swiper-slide" style={{backgroundImage: 'url(/images/car-insurance.jpg'}}>
+                    <div className="content-outer">
+                    <div className="content-box">
+                        <div className="inner">
+                        <div className="logo"><img src="/logoIco2.png" width="100px"  /></div>
+                        <h1>Easy and Low Prices <br /> Insurance for your Goods</h1>
+                        <div className="text"><i className="far fa-meh" />1000+ Positive Reviews</div>
+                        <div className="link-box">
+                            <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Explore</span></a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {/* Slide Item */}
+                <div className="swiper-slide" style={{backgroundImage: 'url(/images/packers-movers.jpg'}}>
+                    <div className="content-outer">
+                    <div className="content-box">
+                        <div className="inner">
+                        <div className="logo"><img src="/logoIco2.png" width="100px"  /></div>
+                        <h1>Best Mobile App to Book <br /> Any Commercial vehicles.</h1>
+                        <div className="text"><i className="far fa-meh" />1000+ Positive Reviews</div>
+                        <div className="link-box">
+                            <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Download App</span></a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {/* Slide Item */}
+                <div className="swiper-slide" style={{backgroundImage: 'url(/images/live-tracking.png'}}>
+                    <div className="content-outer">
+                    <div className="content-box">
+                        <div className="inner">
+                        <div className="logo"><img src="/logoIco2.png" width="100px"  /></div>
+                        <h1>Add labour to <br /> load your products</h1>
+                        <div className="text"><i className="far fa-meh" /> Compare and Get best competitive Pricing.</div>
+                        <div className="link-box">
+                            <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Packers & Movers</span></a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
                 </div>
             </div>
-            {/* Slide Item */}
-            <div className="swiper-slide" style={{backgroundImage: 'url(/images/1.jpg'}}>
-                <div className="content-outer">
-                <div className="content-box">
-                    <div className="inner">
-                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
-                    <h1>Find best suited Packers <br /> & Movers in one click.</h1>
-                    <div className="text"><i className="far fa-meh" /> Compare and Get best competitive Pricing.</div>
-                    <div className="link-box">
-                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Packers & Movers</span></a>
-                    </div>
-                    </div>
-                </div>
-                </div>
+            <div className="banner-slider-nav style-three">
+                <div className="banner-slider-control banner-slider-button-prev"><span><i className="flaticon-right-arrow-6" /></span></div>
+                <div className="banner-slider-control banner-slider-button-next"><span><i className="flaticon-right-arrow-6" /></span> </div>
             </div>
-            {/* Slide Item */}
-            <div className="swiper-slide" style={{backgroundImage: 'url(/images/shipment2.jpg'}}>
-                <div className="content-outer">
-                <div className="content-box">
-                    <div className="inner">
-                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
-                    <h1>Stop waiting <br /> for your Shipment</h1>
-                    <div className="text"><i className="far fa-meh" /> Fast and One time Delivery</div>
-                    <div className="link-box">
-                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Get a Quote</span></a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            {/* Slide Item */}
-            <div className="swiper-slide" style={{backgroundImage: 'url(/images/car-insurance.jpg'}}>
-                <div className="content-outer">
-                <div className="content-box">
-                    <div className="inner">
-                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
-                    <h1>Easy and Low Prices <br /> Insurance for your Goods</h1>
-                    <div className="text"><i className="far fa-meh" />1000+ Positive Reviews</div>
-                    <div className="link-box">
-                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Explore</span></a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            {/* Slide Item */}
-            <div className="swiper-slide" style={{backgroundImage: 'url(/images/packers-movers.jpg'}}>
-                <div className="content-outer">
-                <div className="content-box">
-                    <div className="inner">
-                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
-                    <h1>Best Mobile App to Book <br /> Any Commercial vehicles.</h1>
-                    <div className="text"><i className="far fa-meh" />1000+ Positive Reviews</div>
-                    <div className="link-box">
-                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Download App</span></a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            {/* Slide Item */}
-            <div className="swiper-slide" style={{backgroundImage: 'url(/images/live-tracking.png'}}>
-                <div className="content-outer">
-                <div className="content-box">
-                    <div className="inner">
-                    <div className="logo"><img src="assets/images/resource/badge.png"  /></div>
-                    <h1>Add labour to <br /> load your products</h1>
-                    <div className="text"><i className="far fa-meh" /> Compare and Get best competitive Pricing.</div>
-                    <div className="link-box">
-                        <a href="#" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow" />Packers & Movers</span></a>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div className="banner-slider-nav style-three">
-            <div className="banner-slider-control banner-slider-button-prev"><span><i className="flaticon-right-arrow-6" /></span></div>
-            <div className="banner-slider-control banner-slider-button-next"><span><i className="flaticon-right-arrow-6" /></span> </div>
-        </div>
-        <div className="banner-slider-pagination" />
+            <div className="banner-slider-pagination" />
         </section>
 
-        <section className="container py-5">
-            <div className="row">
-                <div className="col-md-7 my-auto">
-                    {/* <div className="display-5">One click booking for your logistics needs</div>
-                    <div className="text-secondary my-1" style={{fontSize:"22px"}}>India’s leading logistics provider.
-                    Book mini trucks, auto, pick up trucks in one click.
+        <div style={{backgroundColor:'#e5e5e5'}}>
+            <section className="container py-5">
+                <div className="row">
+                    <div className="col-md-7 my-auto">
+                        {/* <div className="display-5">One click booking for your logistics needs</div>
+                        <div className="text-secondary my-1" style={{fontSize:"22px"}}>India’s leading logistics provider.
+                        Book mini trucks, auto, pick up trucks in one click.
+                        </div>
+                        <button className="btn btn-warning my-2 px-4 btn-lg">Download app</button> */}
+                        <form className="contact-form">
+                            <h1 className='d-none d-md-block'>Book a ride now</h1>
+                            <input type="text" name="pickup" placeholder="Pick up location" className="w-100 p-3 border border-dark my-2" />
+                            <input type="text" name="drop" placeholder="Drop location" className="w-100 p-3 border border-dark my-2" />
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <input type="date" name="date" className="w-100 p-3 border border-dark my-2" />
+                                </div>
+                                <div className="col-md-6">
+                                    <input type="time" name="time" className="w-100 p-3 border border-dark my-2" />
+                                </div>
+                            </div>
+                            
+                            <div className="form-group d-none d-md-block">
+                                <button type="button" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow"></i>Book Now</span></button>
+                                <Link to="/packers-movers"><button type="button" className="bg-danger text-white py-3 px-5 ms-2">Packers And Movers</button></Link>
+                            </div>            
+                            <div className="d-md-none">
+                                <button type="button" className="btn btn-primary"><span><i className="flaticon-up-arrow"></i>Book Now</span></button>
+                                <Link to="/packers-movers"><button type="button" className="btn btn-danger ms-1">Packers And Movers</button></Link>
+                            </div>
+                        </form>
                     </div>
-                    <button className="btn btn-warning my-2 px-4 btn-lg">Download app</button> */}
-                    <form className="contact-form">
-                        <h1>Book a ride now</h1>
-                        <input type="text" name="pickup" placeholder="Pick up location" className="w-100 p-3 border border-dark my-2" />
-                        <input type="text" name="drop" placeholder="Drop location" className="w-100 p-3 border border-dark my-2" />
-                        <div className="row">
-                            <div className="col-md-6">
-                                <input type="date" name="date" className="w-100 p-3 border border-dark my-2" />
-                            </div>
-                            <div className="col-md-6">
-                                <input type="time" name="time" className="w-100 p-3 border border-dark my-2" />
-                            </div>
-                        </div>
-                        
-                        <div className="form-group d-none d-md-block">
-                            <button type="button" className="theme-btn btn-style-one"><span><i className="flaticon-up-arrow"></i>Book Now</span></button>
-                            <Link to="/packers-movers"><button type="button" className="bg-danger text-white py-3 px-5 ms-2">Packers And Movers</button></Link>
-                        </div>            
-                        <div className="d-md-none">
-                            <button type="button" className="btn btn-primary"><span><i className="flaticon-up-arrow"></i>Book Now</span></button>
-                            <Link to="/packers-movers"><button type="button" className="btn btn-danger ms-1">Packers And Movers</button></Link>
-                        </div>
-                    </form>
+                    <div className="col-md-5 py-4">
+                        <img src="/gif/book-ride.gif" alt="Taxi" width="100%" />
+                    </div>
                 </div>
-                <div className="col-md-5 py-4">
-                    <img src="https://www.logisticadda.in/blog/wp-content/uploads/2020/07/advantage.png" alt="Taxi" width="100%" />
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
  
         <section className="Whychooseus-section">
             <div className="auto-container">

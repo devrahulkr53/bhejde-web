@@ -12,10 +12,10 @@ import {
 let users = [
   {
     uid: 1,
-    username: "admin",
+    username: "bhejdeindia",
     role: "admin",
-    password: "123456",
-    email: "admin@gmail.com",
+    password: "Mindvacation@11",
+    email: "bhejdeindia@gmail.com",
   },
 ]
 

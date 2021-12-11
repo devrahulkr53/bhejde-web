@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import { useDispatch } from 'react-redux';
 
 export default function CreateVehicle(props) {
-
+    
     var db = firebase.firestore();
     var storageRef = firebase.storage().ref();
     var dispatch = useDispatch();
@@ -26,11 +26,7 @@ export default function CreateVehicle(props) {
         if(data.vehicleImage[0]){
             setLoading(true) 
             uploadFile(data.vehicleImage[0]).then(res=>{
-                db.collection("vehicles").add({
-                    vehicleName:data.vehicleName,
-                    vehicleDesc:data.vehicleDesc,
-                    vehicleImage:res
-                })
+                db.collection("vehicles").add({...data,vehicleImage:res})
                 .then((docRef) => {
                     setLoading(false)
                     props.setStep('read')
@@ -92,6 +88,7 @@ export default function CreateVehicle(props) {
             <form id="vehiclesForm" onSubmit={handleSubmit(onSubmit)} className="row">
                 <div className="col-md-9">
                     <input type="text" {...register("vehicleName",{required:true})} name="vehicleName" className="form-control mb-2" placeholder="Enter vehicle name" />
+                    <input type="number" {...register("costPerKm",{required:true})} name="costPerKm" className="form-control mb-2" placeholder="Cost per km (in Rs)" />
                     <textarea {...register("vehicleDesc",{required:true})} name="vehicleDesc" cols="30" rows="4" className="form-control mb-2" placeholder="Write something about this vehicle"></textarea>
                     <input type="file" {...register("vehicleImage",{required:true})} name="vehicleImage" id="vehicleImage" className="d-none"  />
                 </div>

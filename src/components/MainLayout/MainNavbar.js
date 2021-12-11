@@ -31,7 +31,7 @@ export default function MainNavbar() {
           </div>
         </div>
         {/* Header Upper */}
-        <div className="header-upper">
+        <div className="header-upper d-none d-md-block">
           <div className="auto-container">
             <div className="inner-container">
               {/*Logo*/}
@@ -52,7 +52,7 @@ export default function MainNavbar() {
                 {/*Nav Box*/}
                 <div className="nav-outer">
                   {/*Mobile Navigation Toggler*/}
-                  <div onClick={e=>setShowSidebar(!showSidebar)} className="mobile-nav-toggler"> <img src="assets/images/icons/icon-bar-2.png"  /> </div>
+                  <div onClick={e=>setShowSidebar(!showSidebar)} className="mobile-nav-toggler"> <img src="/assets/images/icons/icon-bar-2.png"  /> </div>
                   {/* Main Menu */}
                   <nav className="main-menu navbar-expand-md navbar-light">
                     <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
@@ -76,6 +76,20 @@ export default function MainNavbar() {
             </div>
           </div>
         </div>
+        {/* Mobile Menu */}
+        <div className="container bg-white p-1 px-4 d-md-none">
+          <div className="d-flex align-items-center"> 
+            <a href="/" className="d-flex align-items-center">
+              <img src="/logoIco2.png" width="50px"  /> 
+              <div className="p-2">
+                <div className="text-dark" style={{fontSize:'21px'}}>BhejDe India</div>
+                <small className="text-secondary" style={{marginTop:'-40px'}}>Move with us</small>
+              </div>
+            </a>
+            <div onClick={e=>setShowSidebar(!showSidebar)} className="mobile-nav-toggler ml-auto"> <img src="/assets/images/icons/icon-bar.png"  /> </div>
+          </div>
+        </div>
+
         {/*End Header Upper*/}
         <div className="sidebar" style={{display:showSidebar ? 'block':'none',backgroundColor:'black'}}>
           <div className="text-end">

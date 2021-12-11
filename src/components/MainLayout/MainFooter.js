@@ -1,11 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './footer.css'
 
 export default function MainFooter() {
 
+    const [slide,setSlide] = useState(1);
     const startDate = 2021
     const endDate = new Date().getFullYear() > startDate ? '- '+new Date().getFullYear() : ''
+
+    useEffect(()=>{
+        var slideInterval = setInterval(()=>{
+            setSlide(slide=>{
+                return window.innerWidth >= slide ? slide + 1 : 0;
+            })
+        },15)
+        return function cleanup(){
+            clearInterval(slideInterval)
+        }
+    },[])
+
 
     return (
         <React.Fragment>
@@ -101,6 +114,8 @@ export default function MainFooter() {
                 </div> 
             </div>               
         </footer>
+        <img src="/gif/moving-truck2.gif" className='d-none d-md-block' width="240px" alt="user" style={{marginLeft:slide+'px',marginTop:'-180px'}} />
+        <img src="/gif/moving-truck2.gif" className='d-md-none' width="80px" alt="user" style={{marginLeft:slide+'px',marginTop:'-120px'}} />
         
         {/*End Main Footer*/}
         <div className="footer-bottom">

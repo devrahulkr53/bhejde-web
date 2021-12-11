@@ -4,8 +4,7 @@ import { connect, useDispatch } from "react-redux"
 import Breadcrumbs from "../../components/Common/Breadcrumb" 
 //css
 import "@fullcalendar/bootstrap/main.css"
-
-import { AvForm, AvField } from "availity-reactstrap-validation"
+ 
 import {
   Col,
   Row,
@@ -19,11 +18,9 @@ import {
 } from "reactstrap"
 import firebase from 'firebase';
 
-// import images
-import img2 from "../../assets/images/small/img-2.jpg"
-import img3 from "../../assets/images/small/img-3.jpg"
-import { useForm } from "react-hook-form"
+
 import CreateVehicle from "./Create"
+import EditVehicle from "./Edit"
 
 const Vehicles = props => {
 
@@ -31,6 +28,7 @@ const Vehicles = props => {
   var storage = firebase.storage();
   var dispatch = useDispatch();
   const [vehicles,setVehicles] = useState([])
+  const [vehicle,setVehicle] = useState(null)
   const [isLoading,setLoading] = useState(true)
   const [step,setStep] = useState('read')
 
@@ -57,6 +55,11 @@ const Vehicles = props => {
     }).catch((error) => dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}}));
      
   }
+
+  const editVehicle = (x) => {
+    setVehicle(x)
+    setStep('edit')
+  }
  
   
   return (
@@ -69,6 +72,7 @@ const Vehicles = props => {
             <p className="text-secondary">Add new vehicles for drivers to register with their vehicles type</p>
           </>}
           {step === 'create' && !isLoading ? <CreateVehicle {...{step,setStep}} /> : <></>}
+          {step === 'edit' && !isLoading ? <EditVehicle {...{step,setStep,vehicle}} /> : <></>}
           {step === 'read' && <>
             {isLoading ? <div className="text-center">
               <div className="spinner-border text-info"></div>
@@ -97,6 +101,9 @@ const Vehicles = props => {
                         </Col>
                         
                         <Col md={2} className="d-flex">
+                          <Button color="primary" onClick={()=>editVehicle(val)} className="btn btn-primary waves-effect ms-auto me-2">
+                            Edit
+                          </Button>
                           <Button color="danger" onClick={()=>deleteVehicle(val)} className="btn btn-danger waves-effect ms-auto me-2">
                             Delete
                           </Button>
