@@ -34,7 +34,6 @@ export default function ShowPackersMovers() {
         db.collection("packers-movers")
         .where("cityLocation",">=",search.toLowerCase())
         .where("cityLocation","<=",search.toLowerCase()+ '\uf8ff')
-        // .where("name","==","Rahul")
         .get().then(querySnapshot=>{
             var arr = []
             querySnapshot.forEach(doc=>{

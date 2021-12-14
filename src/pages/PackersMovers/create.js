@@ -74,7 +74,7 @@ export default function RegisterPackersMovers() {
     const uploadFiles = async (file) => {
         return new Promise(function(resolve,reject){
             
-            var uploadTask = storage.child('users/'+ new Date().toISOString() + file.name).put(file);
+            var uploadTask = storage.child('packers-movers/'+ new Date().toISOString() + file.name).put(file);
             
             uploadTask.on('state_changed', 
             (snapshot) => { 

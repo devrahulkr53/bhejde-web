@@ -5,24 +5,14 @@ import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from "./actionTypes"
 import { apiError, loginSuccess, logoutUserSuccess } from "./actions"
 
 //Include Both Helper File with needed methods
-import { getFirebaseBackend } from "../../../helpers/firebase_helper"
+import { getFirebaseBackend, initFirebaseBackend } from "../../../helpers/firebase_helper"
 import {
   postFakeLogin,
   postJwtLogin,
   postSocialLogin,
 } from "../../../helpers/fakebackend_helper"
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA-U0BPRO2v8pJ_OwjCNRBSI2_KZNPXSCw",
-  authDomain: "coachnconsult-9ddc1.firebaseapp.com",
-  projectId: "coachnconsult-9ddc1",
-  storageBucket: "coachnconsult-9ddc1.appspot.com",
-  messagingSenderId: "463025441868",
-  appId: "1:463025441868:web:f5b4d8cc6ea25af714b8e9",
-  measurementId: "G-6D51D4R52G"
-}
-
-const fireBaseBackend = getFirebaseBackend(firebaseConfig)
+ 
+const fireBaseBackend = initFirebaseBackend()
 
 function* loginUser({ payload: { user, history } }) {
   try {
@@ -32,6 +22,7 @@ function* loginUser({ payload: { user, history } }) {
         user.email,
         user.password
       )
+      localStorage.setItem("authUser", JSON.stringify(response))
       yield put(loginSuccess(response))
     } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
       const response = yield call(postJwtLogin, {
@@ -51,7 +42,7 @@ function* loginUser({ payload: { user, history } }) {
     }
     history.push("/dashboard")
   } catch (error) {
-    yield put(apiError(error[1]))
+    yield put(apiError(error))
   }
 }
 

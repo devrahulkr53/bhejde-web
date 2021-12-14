@@ -41,7 +41,8 @@ const Vehicles = props => {
       });
       setLoading(false)
       setVehicles(data)
-    });  
+    });
+    return ()=>{}
   },[])
  
 

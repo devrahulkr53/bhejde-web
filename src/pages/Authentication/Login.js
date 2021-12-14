@@ -15,6 +15,7 @@ import { loginUser, apiError, socialLogin } from "../../store/actions"
 
 // import images
 import logo from "../../assets/images/logo-sm-dark.png"
+import firebase from 'firebase';
 
 const Login = (props) => {
   useEffect(() => {
@@ -110,21 +111,21 @@ const Login = (props) => {
                         </button>
                       </div>
 
-                      {/* <div className="mt-4 text-center">
+                      <div className="mt-4 text-center">
                         <Link to="/forgot-password" className="text-muted"><i
                           className="mdi mdi-lock me-1"></i> Forgot your password?</Link>
-                      </div> */}
+                      </div>
                     </AvForm>
 
                   </div>
                 </div>
               </div>
               <div className="mt-5 text-center">
-                {/* <p>Don't have an account ? <Link to="/register"
-                  className="fw-medium text-primary"> Signup now </Link> </p> */}
-                <p>© {new Date().getFullYear()} Qovex. Crafted with <i
+                <p>Don't have an account ? <Link to="/register"
+                  className="fw-medium text-primary"> Signup now </Link> </p>
+                {/* <p>© {new Date().getFullYear()} Qovex. Crafted with <i
                   className="mdi mdi-heart text-danger"></i> by Themesbrand
-                        </p>
+                        </p> */}
               </div>
             </Col>
           </Row>

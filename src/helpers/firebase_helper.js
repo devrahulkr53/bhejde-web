@@ -8,7 +8,7 @@ class FirebaseAuthBackend {
   constructor(firebaseConfig) {
     if (firebaseConfig) {
       // Initialize Firebase
-      firebase.initializeApp(firebaseConfig)
+      // firebase.initializeApp(firebaseConfig)
       firebase.auth().onAuthStateChanged(user => {
         if (user) {
           localStorage.setItem("authUser", JSON.stringify(user))
@@ -185,7 +185,7 @@ let _fireBaseBackend = null
  */
 const initFirebaseBackend = config => {
   if (!_fireBaseBackend) {
-    _fireBaseBackend = new FirebaseAuthBackend(config)
+    _fireBaseBackend = new FirebaseAuthBackend()
   }
   return _fireBaseBackend
 }
