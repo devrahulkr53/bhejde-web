@@ -121,13 +121,14 @@ export default function MainFooter() {
         <div className="footer-bottom">
             <div className="auto-container">
                 <div className="row m-0 align-items-center justify-content-between">
-                <div className="copyright-text">Copyright © {startDate} {endDate} <a href="/"> BhejDe India.</a> All Rights Reserved.</div>
+                <div className="copyright-text">Copyright © {startDate} {endDate} <a href="/" className='text-danger'> BhejDe India.</a> All Rights Reserved.</div>
                 <ul className="menu">
                     <li><Link to="/faq">  FAQ</Link></li>
                     <li><Link to="/terms">Terms &amp; Conditions</Link></li>
                     <li><Link to="/privacy-policy">Privacy Policy </Link></li>
                 </ul>
-                </div>            
+                </div> 
+                <div className="copyright-text text-end">Designed & Developed by <a target='_blank' className='text-danger' href="http://paultechsoftwareservices.com/">Paultech Software Services pvt ltd</a> </div>
             </div>
         </div>
     </React.Fragment>
