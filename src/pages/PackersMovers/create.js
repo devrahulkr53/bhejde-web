@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import firebase from 'firebase';
 
@@ -51,7 +51,6 @@ export default function RegisterPackersMovers() {
     const [businessImages,setBusinessImages] = React.useState([])
     const [isRegistered,setRegistered] = React.useState(false)
 
-
     const onSubmit = (data) => {
         setSubmitLoading(true)
         var x = {
@@ -59,6 +58,16 @@ export default function RegisterPackersMovers() {
             plan:selectedPlan,
             businessImages:businessImages.map(e=>e.val)
         }
+        if(plan[selectedPlan].price > 0){
+            payWithRazorpay(x)
+        }else{
+            addPackersMovers(x)
+        }
+    }
+    
+    
+    
+    const addPackersMovers = (x) => {
         db.collection("packers-movers").add(x)
         .then((docRef) => {
             dispatch({type:"setAlert",payloads:{type:'success',msg:'You are now a registered packers and movers'}})
@@ -69,27 +78,68 @@ export default function RegisterPackersMovers() {
             dispatch({type:"setAlert",payloads:{type:'danger',msg:error.message}})
             setSubmitLoading(false)
         }); 
+        
     }
+
+    const payWithRazorpay = (x) => {
+        fetch(`https://bhejde-api.herokuapp.com/api/checkout`,{
+            method:'POST',
+            body:JSON.stringify({amount:plan[selectedPlan].price*100}),
+            headers:{
+                'content-type':'application/json'
+            }
+        }).then(res=>res.json()).then(json=>{
+            const options = { 
+              key: 'rzp_test_zRGBPtVUdlIaXq',
+              amount: String(plan[selectedPlan].price*100),
+              description: 'Great offers', 
+              image: '/assets/icon/logo.png', 
+              order_id: json.result.id,//Order ID generated in Step 1
+              currency: 'INR', 
+              name: 'Bhejde India pvt ltd', 
+              handler: (response)=>{
+                fetch(`https://bhejde-api.herokuapp.com/api/payment-verify`,{
+                    method:'POST',
+                    body:JSON.stringify({
+                        order_id:json.result.id,
+                        razorpay_payment_id:response.razorpay_payment_id,
+                        razorpay_signature:response.razorpay_signature
+                    }),
+                    headers:{
+                        'content-type':'application/json'
+                    }
+                }).then(res=>res.json()).then(json=>{
+                    if(json.success == 1){
+                        addPackersMovers(x)
+                    }
+                })
+              },
+              prefill: { 
+                email: 'gaurav.kumar@example.com', 
+                contact: '9191919191'
+              },
+              theme: {
+                color: '#3399cc'
+              }
+            }
+            var rzp1 = new window.Razorpay(options);
+            rzp1.open();
+        })
+      }
 
     const uploadFiles = async (file) => {
         return new Promise(function(resolve,reject){
-            
             var uploadTask = storage.child('packers-movers/'+ new Date().toISOString() + file.name).put(file);
-            
             uploadTask.on('state_changed', 
-            (snapshot) => { 
-            }, 
+            (snapshot) => { }, 
             (error) => {
                 reject(error.message)
-                // Handle unsuccessful uploads
-              }, 
-              () => {
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+            }, 
+            () => {
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     resolve(downloadURL)
                 });
-              }
+            }
             );
         })
     }
@@ -212,7 +262,7 @@ export default function RegisterPackersMovers() {
                         </Uploader>
 
                         {selectedPlan != 0 ? <div className="text-start my-3">
-                            <button type="button" disabled={submitLoading} className="theme-btn btn-style-one w-100">
+                            <button type="submit" disabled={submitLoading} className="theme-btn btn-style-one w-100">
                                 <span>
                                     {submitLoading === null ? <><i className="flaticon-up-arrow"></i>Pay Now ( Rs . {plan[selectedPlan].price}) </>:submitLoading === true ? <div className="d-flex align-items-center"><div className="spinner-border text-dark"></div><div className="mx-2">Loading ...</div></div>:''}
                                 </span>
