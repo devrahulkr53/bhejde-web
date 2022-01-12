@@ -50,8 +50,8 @@ const PendingPayments = props => {
         {/* Render Breadcrumb */}
         <Breadcrumbs title="Apps" breadcrumbItem="Pending Payments" />
 
-        {isLoading ? <div className="text-center py-4">
-          <div className="spinner-border text-info"></div>
+        {isLoading ? <div className="text-center">
+          <div className="spinner-border text-secondary"></div>
         </div>:<>
           {payments.length > 0 ? payments.map((val,key)=>{
             return <div key={key} className={`card shadow-sm border-3 border-primary`}>

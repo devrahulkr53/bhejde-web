@@ -46,7 +46,7 @@ const Rides = props => {
         </div>
 
         {isLoading ? <div className="text-center py-4">
-          <div className="spinner-border text-info"></div>
+          <div className="spinner-border text-secondary"></div>
         </div>:<>
           {rides.length > 0 ? rides.map((val,key)=>{
             var colour = val.status == 'completed'? 'success':val.status == 'cancelled'?'danger':'primary';

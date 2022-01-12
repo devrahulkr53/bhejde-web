@@ -76,7 +76,7 @@ const Vehicles = props => {
           {step === 'edit' && !isLoading ? <EditVehicle {...{step,setStep,vehicle}} /> : <></>}
           {step === 'read' && <>
             {isLoading ? <div className="text-center">
-              <div className="spinner-border text-info"></div>
+              <div className="spinner-border text-secondary"></div>
             </div>:<>
               <Row>
                 {vehicles?.map((val,key)=>(

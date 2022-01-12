@@ -90,9 +90,9 @@ class Layout extends Component {
             </div>
           </div>
         </div>
-        <div className="container-fluid">
+        <div className="container-fluid" style={{marginTop:'-55px'}}>
           <div id="layout-wrapper">
-            <Header toggleMenuCallback={this.toggleMenuCallback} />
+            {/* <Header toggleMenuCallback={this.toggleMenuCallback} /> */}
             <Sidebar
               theme={this.props.leftSideBarTheme}
               type={this.props.leftSideBarType}
