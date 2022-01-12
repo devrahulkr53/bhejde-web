@@ -36,11 +36,12 @@ import ShowPackersMovers from "../pages/PackersMovers/show"
 import Users from "../pages/Users"
 import ContactUs from "../pages/ContactUs"
 import Faq from "../pages/Faq"
+import PendingPayments from "../pages/PendingPayments"
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard2 },
   { path : '/dashboard2' , component : Dashboard},
-  // { path: "/calendar", component: Calendar },
+  { path: "/pending-payments", component: PendingPayments },
   { path: "/rides", component: Rides },
   { path: "/vehicles", component: Vehicles },
   { path: "/drivers", component: Drivers },

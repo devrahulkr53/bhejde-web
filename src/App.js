@@ -47,6 +47,7 @@ const App = props => {
       <Router>
 
         <Switch>
+        {/* Authentication */}
         {authRoutes.map((route, idx) => (
           <Authmiddleware
           path={route.path}
@@ -56,7 +57,7 @@ const App = props => {
           isAuthProtected={false}
           />
           ))}
-        
+        {/* Website */}
         {mainRoutes.map((route, idx) => (
           <Authmiddleware
             path={route.path}
@@ -67,6 +68,7 @@ const App = props => {
             exact
           />
         ))}
+        {/* Admin */}
         {userRoutes.map((route, idx) => (
           <Authmiddleware
             path={route.path}

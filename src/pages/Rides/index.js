@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react" 
-import { connect, useDispatch } from "react-redux" 
+import React, { useEffect } from "react" 
+import { connect } from "react-redux" 
 import firebase from 'firebase';
 
 //Import Breadcrumb
@@ -33,7 +33,7 @@ const Rides = props => {
         console.log(err)
     })
   }
-  return (
+  return ( 
     <React.Fragment>
       <div className="page-content">
         {/* Render Breadcrumb */}
@@ -52,13 +52,22 @@ const Rides = props => {
             var colour = val.status == 'completed'? 'success':val.status == 'cancelled'?'danger':'primary';
             return <div key={key} className={`card shadow-sm border-3 border-${colour}`}>
               <div className="card-body">
-                <h5 className="card-title">{val.pickup} - {val.destination} </h5>
-                <p className="card-text">
-                  <img src={val.selectedMaterial.img} width={"30px"} className="pe-2" alt="" /> 
-                  {val.selectedMaterial.value}
-                </p>
-                
-                <div className={`h4 text-end text-uppercase text-${colour}`}> {val.status} </div>
+                <h4 className="card-title">{val.pickup} </h4>
+                <div className="d-flex-row d-md-flex">
+                  <div>
+                    <div className="h4">{val.destination}</div>
+                    <div className="card-text">
+                      <img src={val.selectedMaterial.img} width={"30px"} className="pe-2" alt="" /> 
+                      {val.selectedMaterial.value}
+                    </div>
+                  </div>
+                  
+                  <div className="ms-auto">
+                    <small className="text-secondary">{val.createdAt.toDate().toDateString()}</small>
+                    <div className={`h4 text-uppercase text-${colour}`}> {val.status} </div>
+                  </div>
+
+                </div>
                 {/* <div className="btn-group">
                   <a href="#" className="btn btn-primary">Go somewhere</a>
                   <a href="#" className="btn btn-secondary">Explore</a>

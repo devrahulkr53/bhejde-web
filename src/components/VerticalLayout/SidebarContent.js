@@ -111,6 +111,13 @@ const SidebarContent = props => {
                 <span>{props.t("Rides")}</span>
               </Link>
             </li> 
+
+            <li>
+              <Link to="/pending-payments" className=" waves-effect">
+                <i className="mdi mdi-credit-card"></i>
+                <span>{props.t("Pending Payments")}</span>
+              </Link>
+            </li> 
             <li>
               <Link to="/vehicles" className=" waves-effect">
                 <i className="mdi mdi-car"></i>

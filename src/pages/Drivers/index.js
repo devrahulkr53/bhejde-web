@@ -29,20 +29,13 @@ import classnames from "classnames"
 const Drivers = props => {
  
   var db = firebase.firestore();
-  const [isLoading,setLoading] = React.useState(false)
+  const [isLoading,setLoading] = React.useState(true)
   const [drivers,setDrivers] = React.useState([])
   const [activeTabJustify, setactiveTabJustify] = useState(false)
   
 
   useEffect(() => {
-    fetchDrivers();
-
-  }, [])
-
-
-  const fetchDrivers = () => {
-    setLoading(true)
-    db.collection("users")
+    const subscription = db.collection("users")
     .where("role","==",3)
     .get().then(querySnapshot=>{
         var arr = []
@@ -55,9 +48,9 @@ const Drivers = props => {
     }).catch(err=>{
         console.log(err)
     })
+    
+  }, [])
 
-  }
-  
   function toggleCustomJustified(tab) {
     if (activeTabJustify !== tab) {
       setactiveTabJustify(tab)

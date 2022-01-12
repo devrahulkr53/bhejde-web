@@ -6,7 +6,7 @@ import Alert from '../../components/Common/alert'
 const Authmiddleware = ({
   component: Component,
   layout: Layout,
-  isAuthProtected,app,
+  isAuthProtected,
   ...rest
 }) => (
   <Route
@@ -26,7 +26,7 @@ const Authmiddleware = ({
         
         <Layout>
           <Alert />
-          <Component {...props} app={app} />
+          <Component {...props} />
         </Layout>
       )
     }}
