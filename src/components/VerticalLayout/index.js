@@ -75,6 +75,15 @@ class Layout extends Component {
     }
   }
 
+  tToggle() {
+    var body = document.body;
+    if (window.screen.width <= 768) {
+    body.classList.toggle("sidebar-enable");
+    } else {
+    body.classList.toggle("vertical-collpsed");
+    body.classList.toggle("sidebar-enable");
+    }
+  }
   render() {
     return (
       <React.Fragment>
@@ -93,6 +102,10 @@ class Layout extends Component {
         <div className="container-fluid" style={{marginTop:'-55px'}}>
           <div id="layout-wrapper">
             {/* <Header toggleMenuCallback={this.toggleMenuCallback} /> */}
+            {/* <button onClick={()=>this.tToggle()}>hello</button> */}
+            <div className='d-md-none' onClick={()=>this.tToggle()} style={{position:'fixed',right:40,bottom:20,zIndex:100,padding:15,border:'1.4px solid black',backgroundColor:'white',borderRadius:'10px',boxShadow:'0px 0px 0px 2px lightgrey'}}>
+              <i className="fa fa-fw fa-bars"></i>
+            </div>
             <Sidebar
               theme={this.props.leftSideBarTheme}
               type={this.props.leftSideBarType}

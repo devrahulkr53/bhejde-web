@@ -59,7 +59,7 @@ const PendingPayments = props => {
                 <h4 className="card-title"> {val.name} - {val.vehicle.vehicleName} </h4>
                 <div className="d-flex-row d-md-flex">
                   <div>
-                    <div className="h5">UID :{val.uid}</div>
+                    <div className="h5 d-none d-md-block">UID :{val.uid}</div>
                     <div className="h4">{val.vehicleRegNo}</div>
                   </div>
                   

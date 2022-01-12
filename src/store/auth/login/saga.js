@@ -1,4 +1,5 @@
 import { call, put, takeEvery, takeLatest } from "redux-saga/effects"
+import firebase from 'firebase'
 
 // Login Redux States
 import { LOGIN_USER, LOGOUT_USER, SOCIAL_LOGIN } from "./actionTypes"
@@ -22,7 +23,10 @@ function* loginUser({ payload: { user, history } }) {
         user.email,
         user.password
       )
-      localStorage.setItem("authUser", JSON.stringify(response))
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
+        return firebase.auth().signInWithEmailAndPassword(user.email,user.password)
+      })
+      // localStorage.setItem("authUser", JSON.stringify(response))
       yield put(loginSuccess(response))
     } else if (process.env.REACT_APP_DEFAULTAUTH === "jwt") {
       const response = yield call(postJwtLogin, {

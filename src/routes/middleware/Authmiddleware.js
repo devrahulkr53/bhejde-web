@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Route, Redirect } from "react-router-dom"
 import Alert from '../../components/Common/alert'
-
+import firebase from 'firebase'
 const Authmiddleware = ({
   component: Component,
   layout: Layout,
@@ -14,13 +14,16 @@ const Authmiddleware = ({
     
     render={props => {
 
-      if (isAuthProtected && !localStorage.getItem("authUser")) {
-        return (
-          <Redirect
-            to={{ pathname: "/login", state: { from: props.location } }}
-          />
-        )
-      }
+      firebase.auth().onAuthStateChanged(user=>{
+        if(!user && isAuthProtected){
+          return (
+            <Redirect
+              to={{ pathname: "/login", state: { from: props.location } }}
+            />
+          )
+          
+        }
+      })
 
       return (
         
