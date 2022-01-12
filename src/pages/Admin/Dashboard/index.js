@@ -10,7 +10,7 @@ import ScatterChart from "./scatter-analytics"
 import LatestTransaction from "./latest-transaction"
 
 //Import Image
-import widgetImage from "../../assets/images/widget-img.png"
+import widgetImage from "../../../assets/images/widget-img.png"
 import Overview from "./Overview";
 import Reviews from './Reviews';
 import Revenue from './Revenue';

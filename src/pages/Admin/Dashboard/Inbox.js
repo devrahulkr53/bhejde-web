@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
 
 //import images
-import avatar1 from '../../assets/images/users/avatar-3.jpg'
-import avatar2 from '../../assets/images/users/avatar-4.jpg'
-import avatar3 from '../../assets/images/users/avatar-5.jpg'
-import avatar4 from '../../assets/images/users/avatar-6.jpg'
+import avatar1 from '../../../assets/images/users/avatar-3.jpg'
+import avatar2 from '../../../assets/images/users/avatar-4.jpg'
+import avatar3 from '../../../assets/images/users/avatar-5.jpg'
+import avatar4 from '../../../assets/images/users/avatar-6.jpg'
 
 const Overview = () => {
 

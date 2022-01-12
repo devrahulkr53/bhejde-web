@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, Col, Row } from 'reactstrap';
 import ReactApexChart from "react-apexcharts"
 
-import Breadcrumbs from '../../components/Common/Breadcrumb';
+import Breadcrumbs from '../../../components/Common/Breadcrumb';
 import SalesReport from './SalesReport';
 import EmailSent from './EmailSent';
 import MiniWidget from './MiniWidget';

@@ -1,9 +1,6 @@
 import React from "react"
 import { Redirect } from "react-router-dom"
 
-// Dashboard
-import Dashboard from "../pages/Dashboard/index"
-import Dashboard2 from "../pages/Dashboard2.js/index.js"
 
 //Pages
 import PagesMaintenance from "../pages/Utility/pages-maintenance"
@@ -28,21 +25,27 @@ import RegisterDriver from "../pages/RegisterDriver"
 import About from "../pages/About/index"
 import Terms from "../pages/Terms"
 import Privacy from "../pages/Privacy"
-import Rides from "../pages/Rides"
-import Vehicles from "../pages/Vehicles"
-import Drivers from "../pages/Drivers"
 import RegisterPackersMovers from "../pages/PackersMovers/create"
 import ShowPackersMovers from "../pages/PackersMovers/show"
 import Users from "../pages/Users"
 import ContactUs from "../pages/ContactUs"
 import Faq from "../pages/Faq"
-import PendingPayments from "../pages/PendingPayments"
+
+// Dashboard
+import Dashboard from "../pages/Admin/Dashboard/index"
+import Dashboard2 from "../pages/Admin/Dashboard2.js/index.js"
+import Rides from "../pages/Admin/Rides"
+import Vehicles from "../pages/Admin/Vehicles"
+import Drivers from "../pages/Admin/Drivers"
+import PendingPayments from "../pages/Admin/PendingPayments"
+import AdminPackersMovers from "../pages/Admin/AdminPackersMovers"
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard2 },
   { path : '/dashboard2' , component : Dashboard},
   { path: "/pending-payments", component: PendingPayments },
   { path: "/rides", component: Rides },
+  { path: "/packersmovers", component: AdminPackersMovers },
   { path: "/vehicles", component: Vehicles },
   { path: "/drivers", component: Drivers },
   { path: "/users", component: Users },
