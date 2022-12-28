@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Bhejde - Ride-hailing Website [ Create React App ]
 
+Project Url: https://bhejde.com/ \
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![WhatsApp Image 2022-12-28 at 9 52 11 AM](https://user-images.githubusercontent.com/58592540/209756979-08199d9a-da52-41b4-a3fb-93dd53489b8f.jpeg)
+
 
 ## Available Scripts
 
